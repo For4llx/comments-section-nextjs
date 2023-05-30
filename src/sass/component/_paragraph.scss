@@ -1,0 +1,9 @@
+@use "../abstracts/index" as *;
+
+.paragraph {
+  @include bodyMedium;
+
+  &--bold {
+    @include bodyMediumBold;
+  }
+}

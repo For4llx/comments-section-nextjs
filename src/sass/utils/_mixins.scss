@@ -1,0 +1,24 @@
+@mixin headingLarge {
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+@mixin headingMedium {
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+@mixin bodyMediumBold {
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin bodyMedium {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}

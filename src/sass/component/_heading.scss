@@ -1,0 +1,9 @@
+@use "../abstracts/index" as *;
+
+.heading {
+  @include headingMedium;
+
+  &--large {
+    @include headingLarge;
+  }
+}

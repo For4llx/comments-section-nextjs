@@ -1,0 +1,120 @@
+:root {
+  --darkBlue: hsl(212, 24%, 26%);
+  --grayishBlue: hsl(211, 10%, 45%);
+  --veryLightGray: hsl(228, 33%, 97%);
+  --lightGray: hsl(223, 19%, 93%);
+  --white: hsl(0, 0%, 100%);
+  --moderateBlue: hsl(238, 40%, 52%);
+  --lightGrayishBlue: hsl(239, 57%, 85%);
+  --softRed: hsl(358, 79%, 66%);
+  --paleRed: hsl(357, 100%, 86%);
+  --backgroundColor: hsl(0, 0%, 95%);
+  --container: 730px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+main,
+html {
+  width: 100%;
+  height: 100%;
+  background-color: var(--veryLightGray);
+}
+
+a {
+  text-decoration: none;
+}
+
+em {
+  font-style: normal;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10.5rem;
+}
+
+input {
+  border: none;
+}
+input:focus {
+  outline: none;
+}
+
+.paragraph {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+.paragraph--bold {
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.heading {
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+.heading--large {
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--veryLightGray);
+  border-radius: 10px;
+  width: min-content;
+}
+.counter__input {
+  width: 40px;
+  text-align: center;
+  color: var(--moderateBlue);
+  background-color: var(--veryLightGray);
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+}
+.counter__button {
+  cursor: pointer;
+  padding: 1rem;
+  width: fit-content;
+  fill: var(--lightGrayishBlue);
+}
+.counter__button:hover {
+  fill: var(--moderateBlue);
+}
+.counter--row {
+  flex-direction: row;
+}
+
+.comment {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+/*# sourceMappingURL=style.css.map */
