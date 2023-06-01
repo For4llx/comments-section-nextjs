@@ -1,6 +1,7 @@
 @use "../abstracts/index" as *;
 
 .heading {
+  color: var(--darkBlue);
   @include headingMedium;
 
   &--large {

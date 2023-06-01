@@ -1,6 +1,7 @@
 @use "../abstracts/index" as *;
 
 .paragraph {
+  color: var(--grayishBlue);
   @include bodyMedium;
 
   &--bold {
