@@ -1,6 +1,5 @@
-import { Comment } from "@/components/Comment";
 import "./style.css";
-
+import { Comment } from "@/components/comment";
 export default function Home() {
   return (
     <main>

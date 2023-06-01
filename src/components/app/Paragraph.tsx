@@ -7,7 +7,13 @@ interface IProps {
 
 export const Paragraph = ({ children, isBold }: IProps) => {
   return (
-    <p className={classNames("paragraph", isBold && "paragraph--bold")}>
+    <p
+      className={classNames(
+        "paragraph",
+        isBold && "paragraph--bold",
+        "comment__paragraph"
+      )}
+    >
       {children}
     </p>
   );

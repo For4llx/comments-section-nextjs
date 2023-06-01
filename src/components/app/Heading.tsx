@@ -5,7 +5,7 @@ interface IProps {
   isLarge?: boolean;
 }
 
-export const Paragraph = ({ children, isLarge }: IProps) => {
+export const Heading = ({ children, isLarge }: IProps) => {
   return (
     <p className={classNames("heading", isLarge && "heading--large")}>
       {children}
