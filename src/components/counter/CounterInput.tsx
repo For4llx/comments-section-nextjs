@@ -3,5 +3,5 @@ interface IProps {
 }
 
 export const CounterInput = ({ value }: IProps) => {
-  return <input className="counter__input" defaultValue={value} readOnly />;
+  return <input className="counter__input" value={value} readOnly />;
 };

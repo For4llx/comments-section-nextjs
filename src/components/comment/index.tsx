@@ -1,20 +1,23 @@
+import { IComment } from "@/interfaces/comment";
+import { IUser } from "@/interfaces/user";
 import { Paragraph } from "../app/Paragraph";
 import { Counter } from "../counter";
 import { CommentAction } from "./action";
 import { CommentContainer } from "./CommentContainer";
 import { CommentProfile } from "./profile";
 
-export const Comment = () => {
+interface IProps {
+  comment: IComment;
+  currentUser: IUser;
+}
+
+export const Comment = ({ comment, currentUser }: IProps) => {
   return (
     <CommentContainer>
-      <CommentProfile />
-      <CommentAction />
-      <Paragraph>
-        Impressive! Though it seems the drag feature could be improved. But
-        overall it looks incredible. You’ve nailed the design and the
-        responsiveness at various breakpoints works really well.
-      </Paragraph>
-      <Counter value={0} />
+      <CommentProfile currentUser={currentUser} comment={comment} />
+      <CommentAction currentUser={currentUser} comment={comment} />
+      <Paragraph>{comment.content}</Paragraph>
+      <Counter value={comment.score} />
     </CommentContainer>
   );
 };
