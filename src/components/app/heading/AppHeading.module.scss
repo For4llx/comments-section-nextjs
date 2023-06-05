@@ -1,0 +1,6 @@
+@import "../../../styles/utils.module.scss";
+
+.heading {
+  color: var(--darkBlue);
+  composes: headingMedium;
+}

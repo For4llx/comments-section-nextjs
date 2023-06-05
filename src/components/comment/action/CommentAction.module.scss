@@ -1,4 +1,4 @@
-@use "../abstracts/index" as *;
+@import "../../../styles/utils.module.scss";
 
 .action {
   display: flex;
@@ -8,20 +8,21 @@
   cursor: pointer;
   color: var(--moderateBlue);
   fill: var(--moderateBlue);
-  @include bodyMediumBold;
+  composes: bodyMediumBold;
 
   &:hover {
     color: var(--lightGrayishBlue);
     fill: var(--lightGrayishBlue);
   }
+}
 
-  &--delete {
-    color: var(--softRed);
-    fill: var(--softRed);
+.actionDelete {
+  composes: action;
+  color: var(--softRed);
+  fill: var(--softRed);
 
-    &:hover {
-      color: var(--paleRed);
-      fill: var(--paleRed);
-    }
+  &:hover {
+    color: var(--paleRed);
+    fill: var(--paleRed);
   }
 }

@@ -52,8 +52,4 @@ body {
 
 input {
   border: none;
-
-  &:focus {
-    outline: none;
-  }
 }

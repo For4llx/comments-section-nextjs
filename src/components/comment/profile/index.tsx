@@ -1,5 +1,5 @@
-import { Heading } from "@/components/app/Heading";
-import { Paragraph } from "@/components/app/Paragraph";
+import { Heading } from "@/components/app/heading";
+import { Paragraph } from "@/components/app/paragraph";
 import Image from "next/image";
 import { CommentProfileContainer } from "./CommentProfileContainer";
 import { CommentProfileOwner } from "./CommentProfileOwner";
@@ -14,11 +14,14 @@ interface IProps {
 export const CommentProfile = ({ currentUser, comment }: IProps) => {
   return (
     <CommentProfileContainer>
-      <Image src={""} alt={comment.user.username} height={32} width={32} />
+      <Image
+        src={`/${comment.user.image.png}`}
+        alt={comment.user.username}
+        height={32}
+        width={32}
+      />
       <Heading>{comment.user.username}</Heading>
-      {currentUser.username === comment.user.username && (
-        <CommentProfileOwner />
-      )}
+      <CommentProfileOwner />
       <Paragraph>{comment.createdAt}</Paragraph>
     </CommentProfileContainer>
   );
