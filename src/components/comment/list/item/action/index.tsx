@@ -13,12 +13,8 @@ interface IProps {
 export const CommentAction = ({ comment, currentUser }: IProps) => {
   return (
     <CommentActionContainer>
-      {currentUser.username === comment.user.username && (
-        <>
-          <CommentActionDelete />
-          <CommentActionEdit />
-        </>
-      )}
+      <CommentActionDelete />
+      <CommentActionEdit />
       <CommentActionReply />
     </CommentActionContainer>
   );

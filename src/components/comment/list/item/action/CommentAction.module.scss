@@ -1,4 +1,9 @@
-@import "../../../styles/utils.module.scss";
+@import "../../../../../styles/utils.module.scss";
+
+.container {
+  display: flex;
+  gap: 1.5rem;
+}
 
 .action {
   display: flex;

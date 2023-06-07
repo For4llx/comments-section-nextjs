@@ -1,6 +1,9 @@
 import { CommentList } from "./list";
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
+import { CommentAdd } from "./add";
+import { CommentModal } from "./modal";
+import { CommentContainer } from "./CommentContainer";
 
 interface IProps {
   comments: Array<IComment>;
@@ -8,5 +11,12 @@ interface IProps {
 }
 
 export const Comment = ({ comments, currentUser }: IProps) => {
-  return <CommentList comments={comments} currentUser={currentUser} />;
+  return (
+    <CommentContainer>
+      <CommentList comments={comments} currentUser={currentUser} />
+      <CommentAdd currentUser={currentUser} />
+    </CommentContainer>
+  );
 };
+
+/*<CommentModal />*/
