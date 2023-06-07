@@ -1,0 +1,6 @@
+@import "../../../styles/utils.module.scss";
+
+.paragraph {
+  color: var(--grayishBlue);
+  composes: bodyMedium;
+}

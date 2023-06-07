@@ -1,0 +1,6 @@
+@import "../../../styles/utils.module.scss";
+
+.headingLarge {
+  color: var(--darkBlue);
+  composes: headingLarge;
+}

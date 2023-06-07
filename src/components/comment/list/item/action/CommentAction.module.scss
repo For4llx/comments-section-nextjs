@@ -1,0 +1,33 @@
+@import "../../../../../styles/utils.module.scss";
+
+.container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  cursor: pointer;
+  color: var(--moderateBlue);
+  fill: var(--moderateBlue);
+  composes: bodyMediumBold;
+
+  &:hover {
+    color: var(--lightGrayishBlue);
+    fill: var(--lightGrayishBlue);
+  }
+}
+
+.actionDelete {
+  composes: action;
+  color: var(--softRed);
+  fill: var(--softRed);
+
+  &:hover {
+    color: var(--paleRed);
+    fill: var(--paleRed);
+  }
+}

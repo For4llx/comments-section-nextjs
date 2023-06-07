@@ -1,23 +1,22 @@
+import { CommentList } from "./list";
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
-import { Paragraph } from "../app/Paragraph";
-import { Counter } from "../counter";
-import { CommentAction } from "./action";
+import { CommentAdd } from "./add";
+import { CommentModal } from "./modal";
 import { CommentContainer } from "./CommentContainer";
-import { CommentProfile } from "./profile";
 
 interface IProps {
-  comment: IComment;
+  comments: Array<IComment>;
   currentUser: IUser;
 }
 
-export const Comment = ({ comment, currentUser }: IProps) => {
+export const Comment = ({ comments, currentUser }: IProps) => {
   return (
     <CommentContainer>
-      <CommentProfile currentUser={currentUser} comment={comment} />
-      <CommentAction currentUser={currentUser} comment={comment} />
-      <Paragraph>{comment.content}</Paragraph>
-      <Counter value={comment.score} />
+      <CommentList comments={comments} currentUser={currentUser} />
+      <CommentAdd currentUser={currentUser} />
     </CommentContainer>
   );
 };
+
+/*<CommentModal />*/

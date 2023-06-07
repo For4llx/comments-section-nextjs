@@ -20,7 +20,7 @@
 *.pem
 data
 assets
-
+images
 
 # debug
 npm-debug.log*

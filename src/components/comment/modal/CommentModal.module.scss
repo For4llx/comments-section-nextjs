@@ -1,0 +1,54 @@
+@import "../../../styles/utils.module.scss";
+
+.container {
+  padding: 1.5rem;
+  background-color: var(--white);
+  border-radius: 8px;
+  width: 400px;
+  border: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cancel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--grayishBlue);
+  color: var(--white);
+  width: 161px;
+  height: 48px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  composes: bodyMediumBold;
+
+  &:hover {
+    background-color: var(--lightGrayishBlue);
+  }
+}
+
+.danger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--softRed);
+  color: var(--white);
+  width: 161px;
+  height: 48px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  composes: bodyMediumBold;
+
+  &:hover {
+    background-color: var(--paleRed);
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}

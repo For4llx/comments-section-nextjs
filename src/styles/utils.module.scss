@@ -1,0 +1,39 @@
+.headingLarge {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.headingMedium {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.bodyMediumBold {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.bodyMedium {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.cs {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: max(calc(50% - var(--container) / 2), 2rem);
+  padding-right: max(calc(50% - var(--container) / 2), 2rem);
+}
+
+@mixin small {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
