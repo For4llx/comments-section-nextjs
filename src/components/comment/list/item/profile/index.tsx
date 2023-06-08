@@ -21,7 +21,9 @@ export const CommentListItemProfile = ({ currentUser, comment }: IProps) => {
         width={32}
       />
       <Heading>{comment.user.username}</Heading>
-      <CommentListItemProfileOwner />
+      {comment.user.username === currentUser.username && (
+        <CommentListItemProfileOwner />
+      )}
       <Paragraph>{comment.createdAt}</Paragraph>
     </CommentListItemProfileContainer>
   );

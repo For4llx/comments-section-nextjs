@@ -11,6 +11,7 @@ import { CommentListItemAction } from "./action";
 import { CommentAdd } from "../../add";
 import { CommentAddTextarea } from "../../add/CommentAddTextarea";
 import { CommentListItemContent } from "./content";
+import { useState } from "react";
 
 interface IProps {
   comment: IComment;
@@ -18,6 +19,7 @@ interface IProps {
 }
 
 export const CommentListItem = ({ comment, currentUser }: IProps) => {
+  const [isEditing, setIsEditing] = useState(false);
   return (
     <CommentListItemContainer>
       <CommentListItemLayout
@@ -26,9 +28,16 @@ export const CommentListItem = ({ comment, currentUser }: IProps) => {
           <CommentListItemProfile currentUser={currentUser} comment={comment} />
         }
         action={
-          <CommentListItemAction currentUser={currentUser} comment={comment} />
+          <CommentListItemAction
+            currentUser={currentUser}
+            comment={comment}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+          />
         }
-        content={<CommentListItemContent comment={comment} />}
+        content={
+          <CommentListItemContent comment={comment} isEditing={isEditing} />
+        }
       />
       <CommentAdd currentUser={currentUser} />
       {comment.replies && comment.replies.length > 0 && (

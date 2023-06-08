@@ -3,3 +3,10 @@
   padding-left: 2.5rem;
   border-left: 2px solid var(--lightGray);
 }
+
+@media (max-width: 768px) {
+  .container {
+    margin: 0;
+    padding-left: 1rem;
+  }
+}

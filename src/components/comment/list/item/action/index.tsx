@@ -8,13 +8,24 @@ import { CommentListItemActionReply } from "./CommentListItemActionReply";
 interface IProps {
   comment: IComment;
   currentUser: IUser;
+  isEditing: boolean;
+  setIsEditing: any;
 }
 
-export const CommentListItemAction = ({ comment, currentUser }: IProps) => {
+export const CommentListItemAction = ({
+  comment,
+  currentUser,
+  isEditing,
+  setIsEditing,
+}: IProps) => {
   return (
     <CommentListItemActionContainer>
-      <CommentListItemActionDelete />
-      <CommentListItemActionEdit />
+      {comment.user.username === currentUser.username && (
+        <>
+          <CommentListItemActionDelete />
+          <CommentListItemActionEdit action={() => setIsEditing(!isEditing)} />
+        </>
+      )}
       <CommentListItemActionReply />
     </CommentListItemActionContainer>
   );
