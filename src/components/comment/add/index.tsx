@@ -1,8 +1,8 @@
 import { AppButton } from "@/components/app/button";
-import { AppTextarea } from "@/components/app/textarea";
 import { IUser } from "@/interfaces/user";
 import Image from "next/image";
 import { CommentAddContainer } from "./CommentAddContainer";
+import { CommentAddTextarea } from "./CommentAddTextarea";
 
 interface IProps {
   currentUser: IUser;
@@ -17,7 +17,7 @@ export const CommentAdd = ({ currentUser }: IProps) => {
         height={40}
         width={40}
       />
-      <AppTextarea />
+      <CommentAddTextarea />
       <AppButton>Send</AppButton>
     </CommentAddContainer>
   );

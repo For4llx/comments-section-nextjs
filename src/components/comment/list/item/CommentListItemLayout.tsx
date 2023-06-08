@@ -1,4 +1,4 @@
-import styles from "./CommentItem.module.scss";
+import styles from "./CommentListItem.module.scss";
 
 interface IProps {
   counter: any;
@@ -9,7 +9,7 @@ interface IProps {
   button: any;
 }
 
-export const CommentItemLayout = ({
+export const CommentListItemLayout = ({
   counter,
   profile,
   action,
