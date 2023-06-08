@@ -10,6 +10,7 @@ import { CommentListItemProfile } from "./profile";
 import { CommentListItemAction } from "./action";
 import { CommentAdd } from "../../add";
 import { CommentAddTextarea } from "../../add/CommentAddTextarea";
+import { CommentListItemContent } from "./content";
 
 interface IProps {
   comment: IComment;
@@ -27,9 +28,7 @@ export const CommentListItem = ({ comment, currentUser }: IProps) => {
         action={
           <CommentListItemAction currentUser={currentUser} comment={comment} />
         }
-        paragraph={<Paragraph>{comment.content}</Paragraph>}
-        textarea={<CommentAddTextarea />}
-        button={<AppButton>Update</AppButton>}
+        content={<CommentListItemContent comment={comment} />}
       />
       <CommentAdd currentUser={currentUser} />
       {comment.replies && comment.replies.length > 0 && (
