@@ -10,6 +10,8 @@ interface IProps {
   currentUser: IUser;
   isEditing: boolean;
   setIsEditing: any;
+  isReplying: boolean;
+  setIsReplying: any;
 }
 
 export const CommentListItemAction = ({
@@ -17,6 +19,8 @@ export const CommentListItemAction = ({
   currentUser,
   isEditing,
   setIsEditing,
+  isReplying,
+  setIsReplying,
 }: IProps) => {
   return (
     <CommentListItemActionContainer>
@@ -26,7 +30,7 @@ export const CommentListItemAction = ({
           <CommentListItemActionEdit action={() => setIsEditing(!isEditing)} />
         </>
       )}
-      <CommentListItemActionReply />
+      <CommentListItemActionReply action={() => setIsReplying(!isReplying)} />
     </CommentListItemActionContainer>
   );
 };

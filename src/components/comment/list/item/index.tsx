@@ -1,15 +1,12 @@
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
 import { CommentListItemContainer } from "./CommentListItemContainer";
-import { Paragraph } from "@/components/app/paragraph";
-import { AppButton } from "@/components/app/button";
 import { CommentListItemLayout } from "./CommentListItemLayout";
 import { CommentReplies } from "../replies";
 import { Counter } from "@/components/counter";
 import { CommentListItemProfile } from "./profile";
 import { CommentListItemAction } from "./action";
 import { CommentAdd } from "../../add";
-import { CommentAddTextarea } from "../../add/CommentAddTextarea";
 import { CommentListItemContent } from "./content";
 import { useState } from "react";
 
@@ -20,6 +17,7 @@ interface IProps {
 
 export const CommentListItem = ({ comment, currentUser }: IProps) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [isReplying, setIsReplying] = useState(false);
   return (
     <CommentListItemContainer>
       <CommentListItemLayout
@@ -33,13 +31,15 @@ export const CommentListItem = ({ comment, currentUser }: IProps) => {
             comment={comment}
             isEditing={isEditing}
             setIsEditing={setIsEditing}
+            isReplying={isReplying}
+            setIsReplying={setIsReplying}
           />
         }
         content={
           <CommentListItemContent comment={comment} isEditing={isEditing} />
         }
       />
-      <CommentAdd currentUser={currentUser} />
+      {isReplying && <CommentAdd currentUser={currentUser} />}
       {comment.replies && comment.replies.length > 0 && (
         <CommentReplies replies={comment.replies} currentUser={currentUser} />
       )}
