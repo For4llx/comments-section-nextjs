@@ -1,8 +1,8 @@
 import { Heading } from "@/components/app/heading";
 import { Paragraph } from "@/components/app/paragraph";
 import Image from "next/image";
-import { CommentProfileContainer } from "./CommentProfileContainer";
-import { CommentProfileOwner } from "./CommentProfileOwner";
+import { CommentListItemProfileContainer } from "./CommentListItemProfileContainer";
+import { CommentListItemProfileOwner } from "./CommentListItemProfileOwner";
 import { IUser } from "@/interfaces/user";
 import { IComment } from "@/interfaces/comment";
 
@@ -11,9 +11,9 @@ interface IProps {
   comment: IComment;
 }
 
-export const CommentProfile = ({ currentUser, comment }: IProps) => {
+export const CommentListItemProfile = ({ currentUser, comment }: IProps) => {
   return (
-    <CommentProfileContainer>
+    <CommentListItemProfileContainer>
       <Image
         src={`/${comment.user.image.png}`}
         alt={comment.user.username}
@@ -21,8 +21,10 @@ export const CommentProfile = ({ currentUser, comment }: IProps) => {
         width={32}
       />
       <Heading>{comment.user.username}</Heading>
-      <CommentProfileOwner />
+      {comment.user.username === currentUser.username && (
+        <CommentListItemProfileOwner />
+      )}
       <Paragraph>{comment.createdAt}</Paragraph>
-    </CommentProfileContainer>
+    </CommentListItemProfileContainer>
   );
 };

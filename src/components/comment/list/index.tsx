@@ -1,7 +1,7 @@
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
-import { CommentListConainer } from "./CommentListContainer";
-import { CommentItem } from "./item";
+import { CommentListContainer } from "./CommentListContainer";
+import { CommentListItem } from "./item";
 
 interface IProps {
   comments?: Array<IComment>;
@@ -10,9 +10,15 @@ interface IProps {
 
 export const CommentList = ({ comments, currentUser }: IProps) => {
   const commentList = comments?.map((comment) => (
-    <li>
-      <CommentItem currentUser={currentUser} comment={comment} />
+    <li key={comment.id}>
+      <CommentListItem currentUser={currentUser} comment={comment} />
     </li>
   ));
-  return <>{commentList ? <ul>{commentList}</ul> : null}</>;
+  return (
+    <>
+      {commentList ? (
+        <CommentListContainer>{commentList}</CommentListContainer>
+      ) : null}
+    </>
+  );
 };

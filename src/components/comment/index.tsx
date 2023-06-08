@@ -1,3 +1,5 @@
+"use client";
+
 import { CommentList } from "./list";
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
@@ -13,10 +15,9 @@ interface IProps {
 export const Comment = ({ comments, currentUser }: IProps) => {
   return (
     <CommentContainer>
+      <CommentModal />
       <CommentList comments={comments} currentUser={currentUser} />
       <CommentAdd currentUser={currentUser} />
     </CommentContainer>
   );
 };
-
-/*<CommentModal />*/

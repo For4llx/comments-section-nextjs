@@ -1,34 +1,48 @@
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
-import { CommentItemContainer } from "./CommentItemContainer";
-import { Paragraph } from "@/components/app/paragraph";
-import { AppButton } from "@/components/app/button";
-import { CommentItemLayout } from "./CommentItemLayout";
+import { CommentListItemContainer } from "./CommentListItemContainer";
+import { CommentListItemLayout } from "./CommentListItemLayout";
 import { CommentReplies } from "../replies";
-import { AppTextarea } from "@/components/app/textarea";
 import { Counter } from "@/components/counter";
-import { CommentProfile } from "./profile";
-import { CommentAction } from "./action";
+import { CommentListItemProfile } from "./profile";
+import { CommentListItemAction } from "./action";
 import { CommentAdd } from "../../add";
+import { CommentListItemContent } from "./content";
+import { useState } from "react";
 
 interface IProps {
   comment: IComment;
   currentUser: IUser;
 }
 
-export const CommentItem = ({ comment, currentUser }: IProps) => {
+export const CommentListItem = ({ comment, currentUser }: IProps) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [isReplying, setIsReplying] = useState(false);
   return (
-    <CommentItemContainer>
-      <CommentItemLayout
+    <CommentListItemContainer>
+      <CommentListItemLayout
         counter={<Counter value={comment.score} />}
-        profile={<CommentProfile currentUser={currentUser} comment={comment} />}
-        action={<CommentAction currentUser={currentUser} comment={comment} />}
-        paragraph={<Paragraph>{comment.content}</Paragraph>}
-        textarea={<AppTextarea />}
-        button={<AppButton>Update</AppButton>}
+        profile={
+          <CommentListItemProfile currentUser={currentUser} comment={comment} />
+        }
+        action={
+          <CommentListItemAction
+            currentUser={currentUser}
+            comment={comment}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+            isReplying={isReplying}
+            setIsReplying={setIsReplying}
+          />
+        }
+        content={
+          <CommentListItemContent comment={comment} isEditing={isEditing} />
+        }
       />
-      <CommentAdd currentUser={currentUser} />
-      <CommentReplies replies={comment.replies} currentUser={currentUser} />
-    </CommentItemContainer>
+      {isReplying && <CommentAdd currentUser={currentUser} />}
+      {comment.replies && comment.replies.length > 0 && (
+        <CommentReplies replies={comment.replies} currentUser={currentUser} />
+      )}
+    </CommentListItemContainer>
   );
 };
