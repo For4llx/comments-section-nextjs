@@ -1,6 +1,4 @@
-@import "../../../styles/utils.module.scss";
-
-.container {
+.layout {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
@@ -28,5 +26,33 @@
 
   &:focus {
     border: 1px solid var(--moderateBlue);
+  }
+}
+
+.content {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 2;
+  }
+
+  .content {
+    grid-column: 1 / 3;
+    grid-row: 1;
+  }
+
+  .avatar {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .button {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: flex-end;
   }
 }
