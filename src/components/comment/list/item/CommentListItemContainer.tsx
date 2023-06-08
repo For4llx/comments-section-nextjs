@@ -5,5 +5,5 @@ interface IProps {
 }
 
 export const CommentListItemContainer = ({ children }: IProps) => {
-  return <div>{children}</div>;
+  return <div className={styles.container}>{children}</div>;
 };

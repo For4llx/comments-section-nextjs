@@ -1,4 +1,4 @@
-.container {
+.layout {
   background-color: var(--white);
   border-radius: 8px;
   padding: 1.5rem;
@@ -8,6 +8,12 @@
   column-gap: 1.5rem;
   grid-template-columns: 40px 1fr 1fr;
   grid-template-rows: auto auto auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .profile {

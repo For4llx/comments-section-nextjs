@@ -1,5 +1,6 @@
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
+import { CommentListContainer } from "./CommentListContainer";
 import { CommentListItem } from "./item";
 
 interface IProps {
@@ -13,5 +14,11 @@ export const CommentList = ({ comments, currentUser }: IProps) => {
       <CommentListItem currentUser={currentUser} comment={comment} />
     </li>
   ));
-  return <>{commentList ? <ul>{commentList}</ul> : null}</>;
+  return (
+    <>
+      {commentList ? (
+        <CommentListContainer>{commentList}</CommentListContainer>
+      ) : null}
+    </>
+  );
 };

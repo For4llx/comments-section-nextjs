@@ -18,7 +18,7 @@ export const CommentListItemLayout = ({
   textarea,
 }: IProps) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.layout}>
       <div className={styles.counter}>{counter}</div>
       <div className={styles.profile}>{profile}</div>
       <div className={styles.action}>{action}</div>

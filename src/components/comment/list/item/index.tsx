@@ -32,7 +32,9 @@ export const CommentListItem = ({ comment, currentUser }: IProps) => {
         button={<AppButton>Update</AppButton>}
       />
       <CommentAdd currentUser={currentUser} />
-      <CommentReplies replies={comment.replies} currentUser={currentUser} />
+      {comment.replies && comment.replies.length > 0 && (
+        <CommentReplies replies={comment.replies} currentUser={currentUser} />
+      )}
     </CommentListItemContainer>
   );
 };

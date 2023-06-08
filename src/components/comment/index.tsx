@@ -19,4 +19,4 @@ export const Comment = ({ comments, currentUser }: IProps) => {
   );
 };
 
-/*<CommentModal />*/
+/* <CommentModal /> */
