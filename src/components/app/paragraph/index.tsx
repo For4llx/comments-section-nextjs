@@ -1,7 +1,7 @@
 import styles from "./AppParagraph.module.scss";
 
 interface IProps {
-  children: string;
+  children: any;
 }
 
 export const Paragraph = ({ children }: IProps) => {

@@ -5,7 +5,7 @@ import { Rubik } from "next/font/google";
 const rubik = Rubik({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 interface IProps {
-  defaultValue: string;
+  defaultValue?: string;
 }
 
 export const CommentAddTextarea = ({ defaultValue }: IProps) => {

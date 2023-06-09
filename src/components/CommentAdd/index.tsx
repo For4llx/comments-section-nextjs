@@ -1,4 +1,5 @@
 import { AppButton } from "@/components/app/button";
+import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
 import Image from "next/image";
 import { CommentAddContainer } from "./CommentAddContainer";
@@ -7,9 +8,10 @@ import { CommentAddTextarea } from "./CommentAddTextarea";
 
 interface IProps {
   currentUser: IUser;
+  comment?: IComment;
 }
 
-export const CommentAdd = ({ currentUser }: IProps) => {
+export const CommentAdd = ({ currentUser, comment }: IProps) => {
   return (
     <CommentAddContainer>
       <CommentAddLayout
@@ -21,7 +23,11 @@ export const CommentAdd = ({ currentUser }: IProps) => {
             width={40}
           />
         }
-        textarea={<CommentAddTextarea />}
+        textarea={
+          <CommentAddTextarea
+            defaultValue={comment ? `@${comment.user.username}` : ""}
+          />
+        }
         button={<AppButton>Send</AppButton>}
       />
     </CommentAddContainer>

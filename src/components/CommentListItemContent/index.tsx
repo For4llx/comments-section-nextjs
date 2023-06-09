@@ -4,6 +4,7 @@ import { CommentAddTextarea } from "@/components/CommentAdd/CommentAddTextarea";
 import { IComment } from "@/interfaces/comment";
 import { useState } from "react";
 import { CommentListItemContentContainer } from "./CommentListItemContentContainer";
+import { CommentListItemContentReplyingTo } from "./CommentListItemContentReplyingTo";
 
 interface IProps {
   comment: IComment;
@@ -19,7 +20,14 @@ export const CommentListItemContent = ({ comment, isEditing }: IProps) => {
           <AppButton>Update</AppButton>
         </>
       ) : (
-        <Paragraph>{comment.content}</Paragraph>
+        <Paragraph>
+          {comment.replyingTo && (
+            <>
+              <CommentListItemContentReplyingTo comment={comment} />{" "}
+            </>
+          )}
+          {comment.content}
+        </Paragraph>
       )}
     </CommentListItemContentContainer>
   );

@@ -1,13 +1,14 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.dialog {
   padding: 1.5rem;
   background-color: var(--white);
   border-radius: 8px;
   width: 400px;
-  border: none;
-
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
 }
 
 .cancel {

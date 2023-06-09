@@ -3,11 +3,15 @@ import utilsStyles from "@/styles/utils.module.scss";
 
 interface IProps {
   children: string;
+  action: any;
 }
 
-export const CommentModalCancel = ({ children }: IProps) => {
+export const CommentModalCancel = ({ children, action }: IProps) => {
   return (
-    <button className={`${styles.cancel} ${utilsStyles.bodyMediumBold}`}>
+    <button
+      onClick={action}
+      className={`${styles.cancel} ${utilsStyles.bodyMediumBold}`}
+    >
       {children}
     </button>
   );

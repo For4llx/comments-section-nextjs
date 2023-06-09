@@ -5,16 +5,22 @@ import { CommentModalCancel } from "./CommentModalCancel";
 import { CommentModalContainer } from "./CommentModalContainer";
 import { CommentModalDanger } from "./CommentModalDanger";
 
-export const CommentModal = () => {
+interface IProps {
+  commentModal: any;
+}
+
+export const CommentModal = ({ commentModal }: IProps) => {
   return (
-    <CommentModalContainer>
+    <CommentModalContainer commentModal={commentModal}>
       <HeadingLarge>Delete comment</HeadingLarge>
       <Paragraph>
         Are you sure you want to delete this comment? This will remove the
         comment and can’t be undone.
       </Paragraph>
       <CommentModalActions>
-        <CommentModalCancel>No, cancel</CommentModalCancel>
+        <CommentModalCancel action={() => commentModal.current.close()}>
+          No, cancel
+        </CommentModalCancel>
         <CommentModalDanger>Yes, delete</CommentModalDanger>
       </CommentModalActions>
     </CommentModalContainer>

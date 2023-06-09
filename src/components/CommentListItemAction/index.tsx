@@ -12,6 +12,7 @@ interface IProps {
   setIsEditing: any;
   isReplying: boolean;
   setIsReplying: any;
+  commentModal: any;
 }
 
 export const CommentListItemAction = ({
@@ -21,12 +22,15 @@ export const CommentListItemAction = ({
   setIsEditing,
   isReplying,
   setIsReplying,
+  commentModal,
 }: IProps) => {
   return (
     <CommentListItemActionContainer>
       {comment.user.username === currentUser.username && (
         <>
-          <CommentListItemActionDelete />
+          <CommentListItemActionDelete
+            action={() => commentModal.current.showModal()}
+          />
           <CommentListItemActionEdit action={() => setIsEditing(!isEditing)} />
         </>
       )}
