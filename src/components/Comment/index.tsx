@@ -1,10 +1,10 @@
 "use client";
 
-import { CommentList } from "./list";
+import { CommentList } from "../CommentList";
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
-import { CommentAdd } from "./add";
-import { CommentModal } from "./modal";
+import { CommentAdd } from "../CommentAdd";
+import { CommentModal } from "../CommentModal";
 import { CommentContainer } from "./CommentContainer";
 
 interface IProps {

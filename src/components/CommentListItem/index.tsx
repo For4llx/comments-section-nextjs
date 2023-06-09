@@ -2,13 +2,13 @@ import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
 import { CommentListItemContainer } from "./CommentListItemContainer";
 import { CommentListItemLayout } from "./CommentListItemLayout";
-import { CommentReplies } from "../replies";
 import { Counter } from "@/components/counter";
-import { CommentListItemProfile } from "./profile";
-import { CommentListItemAction } from "./action";
-import { CommentAdd } from "../../add";
-import { CommentListItemContent } from "./content";
+import { CommentListItemProfile } from "../CommentListItemProfile";
+import { CommentListItemAction } from "../CommentListItemAction";
+import { CommentAdd } from "../CommentAdd";
+import { CommentListItemContent } from "../CommentListItemContent";
 import { useState } from "react";
+import { CommentReplies } from "../CommentListReplies";
 
 interface IProps {
   comment: IComment;

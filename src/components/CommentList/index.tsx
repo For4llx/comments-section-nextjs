@@ -1,7 +1,7 @@
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
 import { CommentListContainer } from "./CommentListContainer";
-import { CommentListItem } from "./item";
+import { CommentListItem } from "../CommentListItem";
 
 interface IProps {
   comments?: Array<IComment>;

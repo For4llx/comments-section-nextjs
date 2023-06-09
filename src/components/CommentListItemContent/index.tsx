@@ -1,6 +1,6 @@
 import { AppButton } from "@/components/app/button";
 import { Paragraph } from "@/components/app/paragraph";
-import { CommentAddTextarea } from "@/components/comment/add/CommentAddTextarea";
+import { CommentAddTextarea } from "@/components/CommentAdd/CommentAddTextarea";
 import { IComment } from "@/interfaces/comment";
 import { useState } from "react";
 import { CommentListItemContentContainer } from "./CommentListItemContentContainer";
