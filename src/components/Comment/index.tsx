@@ -1,21 +1,18 @@
 "use client";
 
 import { CommentList } from "../CommentList";
-import { IComment } from "@/interfaces/comment";
-import { IUser } from "@/interfaces/user";
 import { CommentAdd } from "../CommentAdd";
 import { CommentContainer } from "./CommentContainer";
-
-interface IProps {
-  comments: Array<IComment>;
-  currentUser: IUser;
-}
-
-export const Comment = ({ comments, currentUser }: IProps) => {
+import { CommentContext } from "./context";
+import { useContext } from "react";
+export const Comment = () => {
+  const { comments, currentUser } = useContext(CommentContext);
   return (
-    <CommentContainer>
-      <CommentList comments={comments} currentUser={currentUser} />
-      <CommentAdd currentUser={currentUser} />
-    </CommentContainer>
+    <CommentContext.Provider value={{ comments, currentUser }}>
+      <CommentContainer>
+        <CommentList comments={comments} />
+        <CommentAdd />
+      </CommentContainer>
+    </CommentContext.Provider>
   );
 };

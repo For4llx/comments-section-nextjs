@@ -7,33 +7,28 @@ import { CommentListItemProfile } from "../CommentListItemProfile";
 import { CommentListItemAction } from "../CommentListItemAction";
 import { CommentAdd } from "../CommentAdd";
 import { CommentListItemContent } from "../CommentListItemContent";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { CommentReplies } from "../CommentListReplies";
 import { CommentModal } from "../CommentModal";
+import { CommentContext } from "../Comment/context";
 
 interface IProps {
   comment: IComment;
-  currentUser: IUser;
 }
 
-export const CommentListItem = ({ comment, currentUser }: IProps) => {
+export const CommentListItem = ({ comment }: IProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const commentModal = useRef(null);
+
   return (
     <>
       <CommentListItemContainer>
         <CommentListItemLayout
           counter={<Counter value={comment.score} />}
-          profile={
-            <CommentListItemProfile
-              currentUser={currentUser}
-              comment={comment}
-            />
-          }
+          profile={<CommentListItemProfile comment={comment} />}
           action={
             <CommentListItemAction
-              currentUser={currentUser}
               comment={comment}
               isEditing={isEditing}
               setIsEditing={setIsEditing}
@@ -46,11 +41,9 @@ export const CommentListItem = ({ comment, currentUser }: IProps) => {
             <CommentListItemContent comment={comment} isEditing={isEditing} />
           }
         />
-        {isReplying && (
-          <CommentAdd currentUser={currentUser} comment={comment} />
-        )}
+        {isReplying && <CommentAdd comment={comment} />}
         {comment.replies && comment.replies.length > 0 && (
-          <CommentReplies replies={comment.replies} currentUser={currentUser} />
+          <CommentReplies replies={comment.replies} />
         )}
       </CommentListItemContainer>
       <CommentModal commentModal={commentModal} />

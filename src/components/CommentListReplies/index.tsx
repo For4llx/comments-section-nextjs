@@ -5,13 +5,12 @@ import { CommentListRepliesContainer } from "./CommentListRepliesContainer";
 
 interface IProps {
   replies?: Array<IComment>;
-  currentUser: IUser;
 }
 
-export const CommentReplies = ({ currentUser, replies }: IProps) => {
+export const CommentReplies = ({ replies }: IProps) => {
   return (
     <CommentListRepliesContainer>
-      <CommentList comments={replies} currentUser={currentUser} />
+      <CommentList comments={replies} />
     </CommentListRepliesContainer>
   );
 };

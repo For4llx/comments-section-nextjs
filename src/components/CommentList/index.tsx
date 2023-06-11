@@ -5,13 +5,12 @@ import { CommentListItem } from "../CommentListItem";
 
 interface IProps {
   comments?: Array<IComment>;
-  currentUser: IUser;
 }
 
-export const CommentList = ({ comments, currentUser }: IProps) => {
+export const CommentList = ({ comments }: IProps) => {
   const commentList = comments?.map((comment) => (
     <li key={comment.id}>
-      <CommentListItem currentUser={currentUser} comment={comment} />
+      <CommentListItem comment={comment} />
     </li>
   ));
   return (
