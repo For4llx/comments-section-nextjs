@@ -5,13 +5,15 @@ import { CommentListItemProfileContainer } from "./CommentListItemProfileContain
 import { CommentListItemProfileOwner } from "./CommentListItemProfileOwner";
 import { IUser } from "@/interfaces/user";
 import { IComment } from "@/interfaces/comment";
+import { CommentContext } from "../Comment/context";
+import { useContext } from "react";
 
 interface IProps {
-  currentUser: IUser;
   comment: IComment;
 }
 
-export const CommentListItemProfile = ({ currentUser, comment }: IProps) => {
+export const CommentListItemProfile = ({ comment }: IProps) => {
+  const { currentUser } = useContext(CommentContext);
   return (
     <CommentListItemProfileContainer>
       <Image
