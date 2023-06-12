@@ -26,6 +26,24 @@
   padding-right: max(calc(50% - var(--container) / 2), 2rem);
 }
 
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--moderateBlue);
+  color: var(--white);
+  width: 104px;
+  height: 48px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  composes: bodyMediumBold;
+
+  &:hover {
+    background-color: var(--lightGrayishBlue);
+  }
+}
+
 @mixin small {
   @media screen and (max-width: 480px) {
     @content;

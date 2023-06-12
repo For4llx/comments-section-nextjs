@@ -5,7 +5,7 @@ import { CommentListItemProfileContainer } from "./CommentListItemProfileContain
 import { CommentListItemProfileOwner } from "./CommentListItemProfileOwner";
 import { IUser } from "@/interfaces/user";
 import { IComment } from "@/interfaces/comment";
-import { CommentContext } from "../Comment/context";
+import { CommentContext } from "../Comment/CommentProvider";
 import { useContext } from "react";
 
 interface IProps {

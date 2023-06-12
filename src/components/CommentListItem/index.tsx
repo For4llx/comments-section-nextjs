@@ -10,7 +10,7 @@ import { CommentListItemContent } from "../CommentListItemContent";
 import { useContext, useRef, useState } from "react";
 import { CommentReplies } from "../CommentListReplies";
 import { CommentModal } from "../CommentModal";
-import { CommentContext } from "../Comment/context";
+import { CommentContext } from "../Comment/CommentProvider";
 
 interface IProps {
   comment: IComment;
