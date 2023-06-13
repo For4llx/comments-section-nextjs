@@ -1,7 +1,7 @@
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
 import { useContext } from "react";
-import { CommentContext } from "../Comment/context";
+import { CommentContext } from "../Comment/CommentProvider";
 import { CommentListItemActionContainer } from "./CommentListItemActionContainer";
 import { CommentListItemActionDelete } from "./CommentListItemActionDelete";
 import { CommentListItemActionEdit } from "./CommentListItemActionEdit";

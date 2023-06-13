@@ -1,21 +1,26 @@
 import { IComment } from "@/interfaces/comment";
 import { IUser } from "@/interfaces/user";
-import { CommentListContainer } from "./CommentListContainer";
+import { CommentListContainer } from "../CommentList/CommentListContainer";
 import { CommentListItem } from "../CommentListItem";
 
 interface IProps {
-  comments?: Array<IComment>;
+  replies?: Array<IComment>;
+  parentId: number;
   setComments: any;
 }
 
-export const CommentList = ({ setComments, comments }: IProps) => {
-  const commentList = comments?.map((comment) => (
-    <li key={comment.id}>
+export const CommentListItemRepliesList = ({
+  replies,
+  parentId,
+  setComments,
+}: IProps) => {
+  const commentList = replies?.map((reply) => (
+    <li key={reply.id}>
       <CommentListItem
+        isReply={true}
         setComments={setComments}
-        isReply={false}
-        comment={comment}
-        parentId={-1}
+        comment={reply}
+        parentId={parentId}
       />
     </li>
   ));

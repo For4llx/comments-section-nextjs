@@ -1,21 +1,23 @@
-import { AppButton } from "@/components/app/button";
 import { IComment } from "@/interfaces/comment";
-import { IUser } from "@/interfaces/user";
 import Image from "next/image";
 import { useContext } from "react";
-import { CommentContext } from "../Comment/context";
+import { CommentContext } from "../Comment/CommentProvider";
 import { CommentAddContainer } from "./CommentAddContainer";
 import { CommentAddLayout } from "./CommentAddLayout";
+import { CommentAddSubmit } from "./CommentAddSubmit";
 import { CommentAddTextarea } from "./CommentAddTextarea";
 
 interface IProps {
   comment?: IComment;
+  onsubmit: any;
+  id: number;
+  name: string;
 }
 
-export const CommentAdd = ({ comment }: IProps) => {
+export const CommentAdd = ({ name, onsubmit, comment, id }: IProps) => {
   const { currentUser } = useContext(CommentContext);
   return (
-    <CommentAddContainer>
+    <CommentAddContainer name={name} onsubmit={onsubmit}>
       <CommentAddLayout
         avatar={
           <Image
@@ -30,7 +32,7 @@ export const CommentAdd = ({ comment }: IProps) => {
             defaultValue={comment ? `@${comment.user.username}` : ""}
           />
         }
-        button={<AppButton onClick={() => {}}>Send</AppButton>}
+        button={<CommentAddSubmit id={id} />}
       />
     </CommentAddContainer>
   );
