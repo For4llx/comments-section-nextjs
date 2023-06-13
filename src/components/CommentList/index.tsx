@@ -10,7 +10,7 @@ interface IProps {
 export const CommentList = ({ comments }: IProps) => {
   const commentList = comments?.map((comment) => (
     <li key={comment.id}>
-      <CommentListItem comment={comment} />
+      <CommentListItem isReply={false} comment={comment} parentId={-1} />
     </li>
   ));
   return (

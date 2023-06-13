@@ -3,11 +3,12 @@ import styles from "./CommentAdd.module.scss";
 interface IProps {
   children: any;
   onsubmit: any;
+  name: string;
 }
 
-export const CommentAddContainer = ({ children, onsubmit }: IProps) => {
+export const CommentAddContainer = ({ name, children, onsubmit }: IProps) => {
   return (
-    <form onSubmit={onsubmit} className={styles.container}>
+    <form name={name} onSubmit={onsubmit} className={styles.container}>
       {children}
     </form>
   );
