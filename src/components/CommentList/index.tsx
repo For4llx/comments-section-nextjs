@@ -5,12 +5,18 @@ import { CommentListItem } from "../CommentListItem";
 
 interface IProps {
   comments?: Array<IComment>;
+  setComments: any;
 }
 
-export const CommentList = ({ comments }: IProps) => {
+export const CommentList = ({ setComments, comments }: IProps) => {
   const commentList = comments?.map((comment) => (
     <li key={comment.id}>
-      <CommentListItem isReply={false} comment={comment} parentId={-1} />
+      <CommentListItem
+        setComments={setComments}
+        isReply={false}
+        comment={comment}
+        parentId={-1}
+      />
     </li>
   ));
   return (

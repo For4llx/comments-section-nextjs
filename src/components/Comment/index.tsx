@@ -34,7 +34,7 @@ export const Comment = () => {
   return (
     <CommentContext.Provider value={{ currentUser }}>
       <CommentContainer>
-        <CommentList comments={comments} />
+        <CommentList setComments={setComments} comments={comments} />
         <CommentAdd
           name={"createComment"}
           onsubmit={handleCreateComment}
