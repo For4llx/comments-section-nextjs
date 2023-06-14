@@ -74,8 +74,6 @@ export const CommentListItem = ({
     };
     setComments((previousComments) =>
       previousComments.map((previousComment) => {
-        console.log(previousComment.id);
-        console.log(e.target[1].id);
         if (previousComment.id == e.target[1].id) {
           previousComment.replies = [...previousComment.replies, newComment];
           return previousComment;
@@ -83,6 +81,30 @@ export const CommentListItem = ({
         return previousComment;
       })
     );
+  };
+
+  const handleDeleteComment = (e) => {
+    e.preventDefault();
+    setComments((previousComments) =>
+      previousComments.filter(
+        (previousComment) => previousComment.id != comment.id
+      )
+    );
+  };
+
+  const handleDeleteCommentChildren = (e) => {
+    e.preventDefault();
+    setComments((previousComments) => {
+      return previousComments.map((previousComment) => {
+        if (previousComment.id == e.target[1].id) {
+          const newList = previousComment.replies.filter(
+            (reply) => reply.id != comment.id
+          );
+          previousComment.replies = newList;
+        }
+        return previousComment;
+      });
+    });
   };
 
   if (isReply) {
@@ -115,7 +137,11 @@ export const CommentListItem = ({
             />
           )}
         </CommentListItemContainer>
-        <CommentModal commentModal={commentModal} />
+        <CommentModal
+          onSubmit={handleDeleteCommentChildren}
+          commentModal={commentModal}
+          id={parentId}
+        />
       </>
     );
   } else {
@@ -155,7 +181,11 @@ export const CommentListItem = ({
             />
           )}
         </CommentListItemContainer>
-        <CommentModal commentModal={commentModal} />
+        <CommentModal
+          commentModal={commentModal}
+          onSubmit={handleDeleteComment}
+          id={comment.id}
+        />
       </>
     );
   }
