@@ -7,11 +7,13 @@ import { CommentModalDanger } from "./CommentModalDanger";
 
 interface IProps {
   commentModal: any;
+  onSubmit: any;
+  id: number;
 }
 
-export const CommentModal = ({ commentModal }: IProps) => {
+export const CommentModal = ({ id, onSubmit, commentModal }: IProps) => {
   return (
-    <CommentModalContainer commentModal={commentModal}>
+    <CommentModalContainer onSubmit={onSubmit} commentModal={commentModal}>
       <HeadingLarge>Delete comment</HeadingLarge>
       <Paragraph>
         Are you sure you want to delete this comment? This will remove the
@@ -21,7 +23,7 @@ export const CommentModal = ({ commentModal }: IProps) => {
         <CommentModalCancel action={() => commentModal.current.close()}>
           No, cancel
         </CommentModalCancel>
-        <CommentModalDanger>Yes, delete</CommentModalDanger>
+        <CommentModalDanger id={id} />
       </CommentModalActions>
     </CommentModalContainer>
   );

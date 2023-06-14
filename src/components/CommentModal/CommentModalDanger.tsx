@@ -2,13 +2,16 @@ import styles from "./CommentModal.module.scss";
 import utilsStyles from "@/styles/utils.module.scss";
 
 interface IProps {
-  children: string;
+  id: number;
 }
 
-export const CommentModalDanger = ({ children }: IProps) => {
+export const CommentModalDanger = ({ id }: IProps) => {
   return (
-    <button className={`${styles.danger} ${utilsStyles.bodyMediumBold}`}>
-      {children}
-    </button>
+    <input
+      id={`${id}`}
+      value={"Yes, delete"}
+      type="submit"
+      className={`${styles.danger} ${utilsStyles.bodyMediumBold}`}
+    />
   );
 };
