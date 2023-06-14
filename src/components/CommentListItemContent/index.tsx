@@ -9,21 +9,28 @@ import { CommentListItemContentReplyingTo } from "./CommentListItemContentReplyi
 interface IProps {
   comment: IComment;
   isEditing: boolean;
+  onSubmit: any;
+  id?: number;
 }
 
-export const CommentListItemContent = ({ comment, isEditing }: IProps) => {
+export const CommentListItemContent = ({
+  onSubmit,
+  comment,
+  isEditing,
+  id,
+}: IProps) => {
   return (
     <CommentListItemContentContainer>
       {isEditing ? (
-        <>
+        <form onSubmit={onSubmit}>
           <CommentAddTextarea defaultValue={comment.content} />
-          <AppButton>Update</AppButton>
-        </>
+          <input id={`${id}`} value="Update" type="submit" />
+        </form>
       ) : (
         <Paragraph>
           {comment.replyingTo && (
             <>
-              <CommentListItemContentReplyingTo comment={comment} />{" "}
+              <CommentListItemContentReplyingTo comment={comment} />
             </>
           )}
           {comment.content}

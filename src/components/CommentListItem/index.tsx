@@ -107,6 +107,39 @@ export const CommentListItem = ({
     });
   };
 
+  const handleEditComment = (e) => {
+    e.preventDefault();
+    setComments((previousComments) =>
+      previousComments.map((previousComment) => {
+        if (previousComment.id === comment.id) {
+          previousComment.content = e.target[0].value;
+          setIsEditing(!isEditing);
+          return previousComment;
+        }
+        return previousComment;
+      })
+    );
+  };
+
+  const handleEditCommentChildren = (e) => {
+    e.preventDefault();
+    setComments((previousComments) => {
+      return previousComments.map((previousComment) => {
+        if (previousComment.id == e.target[1].id) {
+          const newList = previousComment.replies.map((reply) => {
+            if (reply.id == comment.id) {
+              reply.content = e.target[0].value;
+              setIsEditing(!isEditing);
+              return reply;
+            }
+            return reply;
+          });
+        }
+        return previousComment;
+      });
+    });
+  };
+
   if (isReply) {
     return (
       <>
@@ -125,7 +158,12 @@ export const CommentListItem = ({
               />
             }
             content={
-              <CommentListItemContent comment={comment} isEditing={isEditing} />
+              <CommentListItemContent
+                onSubmit={handleEditCommentChildren}
+                comment={comment}
+                isEditing={isEditing}
+                id={parentId}
+              />
             }
           />
           {isReplying && (
@@ -162,7 +200,11 @@ export const CommentListItem = ({
               />
             }
             content={
-              <CommentListItemContent comment={comment} isEditing={isEditing} />
+              <CommentListItemContent
+                onSubmit={handleEditComment}
+                comment={comment}
+                isEditing={isEditing}
+              />
             }
           />
           {isReplying && (
