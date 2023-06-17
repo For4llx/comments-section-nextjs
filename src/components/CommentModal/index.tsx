@@ -6,21 +6,30 @@ import { CommentModalContainer } from "./CommentModalContainer";
 import { CommentModalDanger } from "./CommentModalDanger";
 
 interface IProps {
-  commentModal: any;
-  onSubmit: any;
   id: number;
+  setIsDelete: any;
+  handleDeleteComment: any;
+  parentId: any;
 }
 
-export const CommentModal = ({ id, onSubmit, commentModal }: IProps) => {
+export const CommentModal = ({
+  id,
+  setIsDelete,
+  handleDeleteComment,
+  parentId,
+}: IProps) => {
   return (
-    <CommentModalContainer onSubmit={onSubmit} commentModal={commentModal}>
+    <CommentModalContainer
+      parentId={parentId}
+      handleDeleteComment={handleDeleteComment}
+    >
       <HeadingLarge>Delete comment</HeadingLarge>
       <Paragraph>
         Are you sure you want to delete this comment? This will remove the
         comment and can’t be undone.
       </Paragraph>
       <CommentModalActions>
-        <CommentModalCancel action={() => commentModal.current.close()}>
+        <CommentModalCancel setIsDelete={setIsDelete}>
           No, cancel
         </CommentModalCancel>
         <CommentModalDanger id={id} />

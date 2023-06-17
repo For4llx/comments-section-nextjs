@@ -13,23 +13,18 @@ import { CommentContext } from "../Comment/CommentProvider";
 
 interface IProps {
   comment: IComment;
-  isReply: boolean;
-  parentId: number;
+  parentId?: number;
   setComments: any;
 }
 
-export const CommentListItem = ({
-  setComments,
-  parentId,
-  comment,
-  isReply,
-}: IProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [isReplying, setIsReplying] = useState(false);
-  const commentModal = useRef(null);
+export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
+  const [isReply, setIsReply] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [isDelete, setIsDelete] = useState<boolean>(false);
+  const [content, setContent] = useState<string>(comment.content);
   const { currentUser } = useContext(CommentContext);
 
-  const handleCreateReplyRoot = (e) => {
+  const handleCreateReply = (e) => {
     e.preventDefault();
     const newComment = {
       id: 5,
@@ -45,52 +40,101 @@ export const CommentListItem = ({
         username: currentUser.username,
       },
     };
-    setComments((previousComments) =>
-      previousComments.map((previousComment) => {
-        if (previousComment.id === comment.id) {
-          previousComment.replies = [...comment.replies, newComment];
-          return previousComment;
+    setComments((previousComments: IComment[]) =>
+      previousComments.map((currentComment) => {
+        console.log(e.target);
+        const targetId = e.target.dataset.parent_id
+          ? e.target.dataset.parent_id
+          : comment.id;
+
+        if (currentComment.id == targetId) {
+          currentComment.replies = [...currentComment.replies, newComment];
+          setIsReply((previous) => !previous);
+          return currentComment;
         }
-        return previousComment;
+        return currentComment;
       })
     );
   };
 
-  const handleCreateReplyChildren = (e) => {
+  const handleEditComment = (e) => {
     e.preventDefault();
-    const newComment = {
-      id: 5,
-      content: e.target[0].value,
-      createdAt: "1 week ago",
-      replyingTo: comment.user.username,
-      score: 0,
-      user: {
-        image: {
-          png: currentUser.image.png,
-          webp: currentUser.image.webp,
-        },
-        username: currentUser.username,
-      },
-    };
-    setComments((previousComments) =>
-      previousComments.map((previousComment) => {
-        if (previousComment.id == e.target[1].id) {
-          previousComment.replies = [...previousComment.replies, newComment];
-          return previousComment;
-        }
-        return previousComment;
-      })
-    );
+    setContent((previous) => (previous = e.target[0].value));
+    setIsEdit((previous) => !previous);
   };
 
   const handleDeleteComment = (e) => {
     e.preventDefault();
     setComments((previousComments) =>
-      previousComments.filter(
-        (previousComment) => previousComment.id != comment.id
-      )
+      previousComments.map((previousComment) => {
+        const targetId = e.target.dataset.parent_id;
+        console.log(targetId);
+        if (previousComment.id == targetId) {
+          const updatedCommentList = previousComment.replies.filter(
+            (reply) => reply.id != comment.id
+          );
+          previousComment.replies = updatedCommentList;
+          return previousComment;
+        }
+        return previousComment;
+      })
     );
   };
+
+  return (
+    <>
+      <CommentListItemContainer>
+        <CommentListItemLayout
+          counter={<Counter value={comment.score} />}
+          profile={<CommentListItemProfile comment={comment} />}
+          action={
+            <CommentListItemAction
+              comment={comment}
+              setIsEdit={setIsEdit}
+              setIsDelete={setIsDelete}
+              setIsReply={setIsReply}
+            />
+          }
+          content={
+            <CommentListItemContent
+              handleEditComment={handleEditComment}
+              comment={comment}
+              isEdit={isEdit}
+              id={comment.id}
+              content={content}
+            />
+          }
+        />
+        {isReply && (
+          <CommentAdd
+            comment={comment}
+            onsubmit={handleCreateReply}
+            id={comment.id}
+            parentId={parentId ? "" : ""}
+          />
+        )}
+        {comment.replies && comment.replies.length > 0 && (
+          <CommentListItemReplies
+            parentId={comment.id}
+            replies={comment.replies}
+            setComments={setComments}
+          />
+        )}
+      </CommentListItemContainer>
+      {isDelete && (
+        <CommentModal
+          handleDeleteComment={handleDeleteComment}
+          setIsDelete={setIsDelete}
+          id={comment.id}
+          parentId={parentId ? parentId : comment.id}
+        />
+      )}
+    </>
+  );
+};
+
+/*
+
 
   const handleDeleteCommentChildren = (e) => {
     e.preventDefault();
@@ -107,40 +151,8 @@ export const CommentListItem = ({
     });
   };
 
-  const handleEditComment = (e) => {
-    e.preventDefault();
-    setComments((previousComments) =>
-      previousComments.map((previousComment) => {
-        if (previousComment.id === comment.id) {
-          previousComment.content = e.target[0].value;
-          setIsEditing(!isEditing);
-          return previousComment;
-        }
-        return previousComment;
-      })
-    );
-  };
-
-  const handleEditCommentChildren = (e) => {
-    e.preventDefault();
-    setComments((previousComments) => {
-      return previousComments.map((previousComment) => {
-        if (previousComment.id == e.target[1].id) {
-          const newList = previousComment.replies.map((reply) => {
-            if (reply.id == comment.id) {
-              reply.content = e.target[0].value;
-              setIsEditing(!isEditing);
-              return reply;
-            }
-            return reply;
-          });
-        }
-        return previousComment;
-      });
-    });
-  };
-
-  if (isReply) {
+/*
+  if (isReplyy) {
     return (
       <>
         <CommentListItemContainer>
@@ -150,34 +162,31 @@ export const CommentListItem = ({
             action={
               <CommentListItemAction
                 comment={comment}
-                isEditing={isEditing}
-                setIsEditing={setIsEditing}
-                isReplying={isReplying}
-                setIsReplying={setIsReplying}
-                commentModal={commentModal}
+                setIsReply={setIsReply}
+                setIsEdit={setIsEdit}
+                setIsDelete={setIsDelete}
               />
             }
             content={
               <CommentListItemContent
-                onSubmit={handleEditCommentChildren}
                 comment={comment}
-                isEditing={isEditing}
                 id={parentId}
+                isEdit={isEdit}
               />
             }
           />
-          {isReplying && (
+          {isReply && (
             <CommentAdd
               id={parentId}
               comment={comment}
-              onsubmit={handleCreateReplyChildren}
+              onsubmit={undefined}  handleCreateReplyChildren 
               name={"CreateReply"}
             />
           )}
         </CommentListItemContainer>
         <CommentModal
-          onSubmit={handleDeleteCommentChildren}
-          commentModal={commentModal}
+          onSubmit={undefined} handleDeleteCommentChildren
+          setIsDelete={setIsDelete}
           id={parentId}
         />
       </>
@@ -192,26 +201,24 @@ export const CommentListItem = ({
             action={
               <CommentListItemAction
                 comment={comment}
-                isEditing={isEditing}
-                setIsEditing={setIsEditing}
-                isReplying={isReplying}
-                setIsReplying={setIsReplying}
-                commentModal={commentModal}
+                setIsEdit={setIsEdit}
+                setIsDelete={setIsDelete}
+                setIsReply={setIsReply}
               />
             }
             content={
               <CommentListItemContent
-                onSubmit={handleEditComment}
                 comment={comment}
-                isEditing={isEditing}
+                id={comment.id}
+                isEdit={isEdit}
               />
             }
           />
-          {isReplying && (
+          {isReply && (
             <CommentAdd
               name={"CreateReply"}
               comment={comment}
-              onsubmit={handleCreateReplyRoot}
+              onsubmit={undefined} handleCreateReplyRoot
               id={comment.id}
             />
           )}
@@ -224,11 +231,12 @@ export const CommentListItem = ({
           )}
         </CommentListItemContainer>
         <CommentModal
-          commentModal={commentModal}
-          onSubmit={handleDeleteComment}
+          setIsDelete={setIsDelete}
+          onSubmit={undefined} handleDeleteComment
           id={comment.id}
         />
       </>
     );
   }
 };
+*/

@@ -9,20 +9,16 @@ import { CommentListItemActionReply } from "./CommentListItemActionReply";
 
 interface IProps {
   comment: IComment;
-  isEditing: boolean;
-  setIsEditing: any;
-  isReplying: boolean;
-  setIsReplying: any;
-  commentModal: any;
+  setIsEdit: any;
+  setIsDelete: any;
+  setIsReply: any;
 }
 
 export const CommentListItemAction = ({
   comment,
-  isEditing,
-  setIsEditing,
-  isReplying,
-  setIsReplying,
-  commentModal,
+  setIsReply,
+  setIsEdit,
+  setIsDelete,
 }: IProps) => {
   const { currentUser } = useContext(CommentContext);
 
@@ -30,13 +26,11 @@ export const CommentListItemAction = ({
     <CommentListItemActionContainer>
       {comment.user.username === currentUser.username && (
         <>
-          <CommentListItemActionDelete
-            action={() => commentModal.current.showModal()}
-          />
-          <CommentListItemActionEdit action={() => setIsEditing(!isEditing)} />
+          <CommentListItemActionDelete setIsDelete={setIsDelete} />
+          <CommentListItemActionEdit setIsEdit={setIsEdit} />
         </>
       )}
-      <CommentListItemActionReply action={() => setIsReplying(!isReplying)} />
+      <CommentListItemActionReply setIsReply={setIsReply} />
     </CommentListItemActionContainer>
   );
 };

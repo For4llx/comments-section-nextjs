@@ -2,13 +2,13 @@ import styles from "./CommentListItemAction.module.scss";
 import utilsStyles from "@/styles/utils.module.scss";
 
 interface IProps {
-  action: any;
+  setIsReply: any;
 }
 
-export const CommentListItemActionReply = ({ action }: IProps) => {
+export const CommentListItemActionReply = ({ setIsReply }: IProps) => {
   return (
     <button
-      onClick={action}
+      onClick={() => setIsReply((previous: boolean) => !previous)}
       className={`${styles.action} ${utilsStyles.bodyMediumBold}`}
     >
       <svg width="14" height="13" xmlns="http://www.w3.org/2000/svg">

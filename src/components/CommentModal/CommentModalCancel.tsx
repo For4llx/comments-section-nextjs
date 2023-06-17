@@ -3,14 +3,15 @@ import utilsStyles from "@/styles/utils.module.scss";
 
 interface IProps {
   children: string;
-  action: any;
+  setIsDelete: any;
 }
 
-export const CommentModalCancel = ({ children, action }: IProps) => {
+export const CommentModalCancel = ({ children, setIsDelete }: IProps) => {
   return (
     <button
-      onClick={action}
+      onClick={() => setIsDelete((previous: boolean) => !previous)}
       className={`${styles.cancel} ${utilsStyles.bodyMediumBold}`}
+      type="button"
     >
       {children}
     </button>

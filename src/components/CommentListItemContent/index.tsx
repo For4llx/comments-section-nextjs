@@ -1,39 +1,39 @@
-import { AppButton } from "@/components/app/button";
 import { Paragraph } from "@/components/app/paragraph";
 import { CommentAddTextarea } from "@/components/CommentAdd/CommentAddTextarea";
 import { IComment } from "@/interfaces/comment";
-import { useState } from "react";
 import { CommentListItemContentContainer } from "./CommentListItemContentContainer";
 import { CommentListItemContentReplyingTo } from "./CommentListItemContentReplyingTo";
 
 interface IProps {
   comment: IComment;
-  isEditing: boolean;
-  onSubmit: any;
-  id?: number;
+  isEdit: boolean;
+  id: number;
+  handleEditComment: any;
+  content: string;
 }
 
 export const CommentListItemContent = ({
-  onSubmit,
-  comment,
-  isEditing,
   id,
+  comment,
+  isEdit,
+  handleEditComment,
+  content,
 }: IProps) => {
   return (
     <CommentListItemContentContainer>
-      {isEditing ? (
-        <form onSubmit={onSubmit}>
-          <CommentAddTextarea defaultValue={comment.content} />
-          <input id={`${id}`} value="Update" type="submit" />
+      {isEdit ? (
+        <form onSubmit={handleEditComment}>
+          <CommentAddTextarea defaultValue={content} />
+          <input value={"Update"} id={id.toString()} type="submit" />
         </form>
       ) : (
         <Paragraph>
           {comment.replyingTo && (
             <>
-              <CommentListItemContentReplyingTo comment={comment} />
+              <CommentListItemContentReplyingTo comment={comment} />{" "}
             </>
           )}
-          {comment.content}
+          {content}
         </Paragraph>
       )}
     </CommentListItemContentContainer>

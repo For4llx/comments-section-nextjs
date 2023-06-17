@@ -2,13 +2,13 @@ import styles from "./CommentListItemAction.module.scss";
 import utilsStyles from "@/styles/utils.module.scss";
 
 interface IProps {
-  action: any;
+  setIsDelete: any;
 }
 
-export const CommentListItemActionDelete = ({ action }: IProps) => {
+export const CommentListItemActionDelete = ({ setIsDelete }: IProps) => {
   return (
     <button
-      onClick={action}
+      onClick={() => setIsDelete((previous: boolean) => !previous)}
       className={`${styles.actionDelete} ${utilsStyles.bodyMediumBold}`}
     >
       <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg">

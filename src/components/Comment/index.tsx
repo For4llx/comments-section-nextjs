@@ -12,34 +12,27 @@ export const Comment = () => {
 
   const handleCreateComment = (e) => {
     e.preventDefault();
-    console.log(e.target);
-    if (e.target.name === "createComment") {
-      const newComment = {
-        id: 5,
-        content: e.target[0].value,
-        createdAt: "1 week ago",
-        score: 0,
-        user: {
-          image: {
-            png: currentUser.image.png,
-            webp: currentUser.image.webp,
-          },
-          username: currentUser.username,
+    const newComment = {
+      id: 5,
+      content: e.target[0].value,
+      createdAt: "1 week ago",
+      score: 0,
+      user: {
+        image: {
+          png: currentUser.image.png,
+          webp: currentUser.image.webp,
         },
-      };
-      setComments((previousComments) => [...previousComments, newComment]);
-    }
+        username: currentUser.username,
+      },
+    };
+    setComments((previousComments) => [...previousComments, newComment]);
   };
 
   return (
     <CommentContext.Provider value={{ currentUser }}>
       <CommentContainer>
         <CommentList setComments={setComments} comments={comments} />
-        <CommentAdd
-          name={"createComment"}
-          onsubmit={handleCreateComment}
-          id={0}
-        />
+        <CommentAdd onsubmit={handleCreateComment} id={0} />
       </CommentContainer>
     </CommentContext.Provider>
   );
