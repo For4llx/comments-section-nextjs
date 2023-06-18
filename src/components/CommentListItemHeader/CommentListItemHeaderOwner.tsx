@@ -1,4 +1,4 @@
-import styles from "./CommentListItemProfile.module.scss";
+import styles from "./CommentListItemHeader.module.scss";
 
 export const CommentListItemProfileOwner = () => {
   return <span className={styles.owner}>you</span>;

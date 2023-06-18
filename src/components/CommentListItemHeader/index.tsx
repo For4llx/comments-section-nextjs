@@ -1,8 +1,8 @@
 import { Heading } from "@/components/app/heading";
 import { Paragraph } from "@/components/app/paragraph";
 import Image from "next/image";
-import { CommentListItemProfileContainer } from "./CommentListItemProfileContainer";
-import { CommentListItemProfileOwner } from "./CommentListItemProfileOwner";
+import { CommentListItemProfileContainer } from "./CommentListItemHeaderContainer";
+import { CommentListItemProfileOwner } from "./CommentListItemHeaderOwner";
 import { IUser } from "@/interfaces/user";
 import { IComment } from "@/interfaces/comment";
 import { CommentContext } from "../Comment/CommentProvider";
@@ -12,7 +12,7 @@ interface IProps {
   comment: IComment;
 }
 
-export const CommentListItemProfile = ({ comment }: IProps) => {
+export const CommentListItemHeader = ({ comment }: IProps) => {
   const { currentUser } = useContext(CommentContext);
   return (
     <CommentListItemProfileContainer>

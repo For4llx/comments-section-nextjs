@@ -1,6 +1,6 @@
 import { Paragraph } from "@/components/app/paragraph";
-import { CommentAddTextarea } from "@/components/CommentAdd/CommentAddTextarea";
 import { IComment } from "@/interfaces/comment";
+import { CommentAddTextarea } from "../AppAdd/CommentAddTextarea";
 import { CommentListItemContentContainer } from "./CommentListItemContentContainer";
 import { CommentListItemContentReplyingTo } from "./CommentListItemContentReplyingTo";
 

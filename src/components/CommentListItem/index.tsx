@@ -1,15 +1,15 @@
 import { IComment } from "@/interfaces/comment";
 import { CommentListItemContainer } from "./CommentListItemContainer";
 import { CommentListItemLayout } from "./CommentListItemLayout";
-import { Counter } from "@/components/counter";
-import { CommentListItemProfile } from "../CommentListItemProfile";
-import { CommentListItemAction } from "../CommentListItemAction";
-import { CommentAdd } from "../CommentAdd";
-import { CommentListItemContent } from "../CommentListItemContent";
 import { useContext, useRef, useState } from "react";
-import { CommentModal } from "../CommentModal";
-import { CommentListItemReplies } from "../CommentListItemReplies";
 import { CommentContext } from "../Comment/CommentProvider";
+import { Counter } from "../CommentListItemCounter";
+import { CommentListItemHeader } from "../CommentListItemHeader";
+import { CommentListItemActions } from "../CommentListItemActions";
+import { CommentListItemContent } from "../CommentListItemContent";
+import { AppAdd } from "../AppAdd";
+import { CommentListItemReplies } from "../CommentListItemReplies";
+import { CommentModal } from "../CommentListItemModal";
 
 interface IProps {
   comment: IComment;
@@ -86,9 +86,9 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
       <CommentListItemContainer>
         <CommentListItemLayout
           counter={<Counter value={comment.score} />}
-          profile={<CommentListItemProfile comment={comment} />}
+          profile={<CommentListItemHeader comment={comment} />}
           action={
-            <CommentListItemAction
+            <CommentListItemActions
               comment={comment}
               setIsEdit={setIsEdit}
               setIsDelete={setIsDelete}
@@ -106,7 +106,7 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
           }
         />
         {isReply && (
-          <CommentAdd
+          <AppAdd
             comment={comment}
             onsubmit={handleCreateReply}
             id={comment.id}

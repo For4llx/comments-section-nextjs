@@ -14,7 +14,7 @@ interface IProps {
   parentId: number | false;
 }
 
-export const CommentAdd = ({ onsubmit, comment, id, parentId }: IProps) => {
+export const AppAdd = ({ onsubmit, comment, id, parentId }: IProps) => {
   const { currentUser } = useContext(CommentContext);
   return (
     <CommentAddContainer parentId={parentId} onsubmit={onsubmit}>

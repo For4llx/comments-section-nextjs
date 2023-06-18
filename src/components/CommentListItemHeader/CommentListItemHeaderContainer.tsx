@@ -1,4 +1,4 @@
-import styles from "./CommentListItemProfile.module.scss";
+import styles from "./CommentListItemHeader.module.scss";
 
 interface IProps {
   children: any;

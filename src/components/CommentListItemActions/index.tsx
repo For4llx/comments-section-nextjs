@@ -14,7 +14,7 @@ interface IProps {
   setIsReply: any;
 }
 
-export const CommentListItemAction = ({
+export const CommentListItemActions = ({
   comment,
   setIsReply,
   setIsEdit,

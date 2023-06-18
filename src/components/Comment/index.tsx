@@ -1,11 +1,11 @@
 "use client";
 
 import { CommentList } from "../CommentList";
-import { CommentAdd } from "../CommentAdd";
 import { CommentContainer } from "./CommentContainer";
 import { useContext, useState } from "react";
 import { CommentContext } from "./CommentProvider";
 import commentsInitialData from "@/data/comments.json";
+import { AppAdd } from "../AppAdd";
 export const Comment = () => {
   const { currentUser } = useContext(CommentContext);
   const [comments, setComments] = useState(commentsInitialData);
@@ -32,7 +32,7 @@ export const Comment = () => {
     <CommentContext.Provider value={{ currentUser }}>
       <CommentContainer>
         <CommentList setComments={setComments} comments={comments} />
-        <CommentAdd onsubmit={handleCreateComment} id={0} />
+        <AppAdd onsubmit={handleCreateComment} id={0} parentId={0} />
       </CommentContainer>
     </CommentContext.Provider>
   );
