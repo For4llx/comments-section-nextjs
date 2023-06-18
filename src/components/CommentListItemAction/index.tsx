@@ -1,5 +1,4 @@
 import { IComment } from "@/interfaces/comment";
-import { IUser } from "@/interfaces/user";
 import { useContext } from "react";
 import { CommentContext } from "../Comment/CommentProvider";
 import { CommentListItemActionContainer } from "./CommentListItemActionContainer";
@@ -14,7 +13,7 @@ interface IProps {
   setIsReply: any;
 }
 
-export const CommentListItemActions = ({
+export const CommentListItemAction = ({
   comment,
   setIsReply,
   setIsEdit,

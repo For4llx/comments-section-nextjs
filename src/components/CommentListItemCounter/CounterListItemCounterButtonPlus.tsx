@@ -1,6 +1,6 @@
-import styles from "./Counter.module.scss";
+import styles from "./CounterListItemCounter.module.scss";
 
-export const CounterButtonPlus = () => {
+export const CounterListItemCounterButtonPlus = () => {
   return (
     <button className={styles.button}>
       <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">

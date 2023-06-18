@@ -1,4 +1,4 @@
-import styles from "./Counter.module.scss";
+import styles from "./CounterListItemCounter.module.scss";
 import stylesUtils from "../../styles/utils.module.scss";
 import { Rubik } from "next/font/google";
 
@@ -8,7 +8,7 @@ interface IProps {
   value: number;
 }
 
-export const CounterInput = ({ value }: IProps) => {
+export const CounterListItemCounterInput = ({ value }: IProps) => {
   return (
     <input
       className={`${styles.input} ${stylesUtils.bodyMediumBold} ${rubik.className}`}

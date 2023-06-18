@@ -1,18 +1,18 @@
-import { CounterButtonMinus } from "./CounterButtonMinus";
-import { CounterButtonPlus } from "./CounterButtonPlus";
-import { CounterContainer } from "./CounterContainer";
-import { CounterInput } from "./CounterInput";
+import { CounterListItemCounterButtonMinus } from "./CounterListItemCounterButtonMinus";
+import { CounterListItemCounterButtonPlus } from "./CounterListItemCounterButtonPlus";
+import { CounterListItemCounterContainer } from "./CounterListItemCounterContainer";
+import { CounterListItemCounterInput } from "./CounterListItemCounterInput";
 
 interface IProps {
   value: number;
 }
 
-export const Counter = ({ value }: IProps) => {
+export const CommentListItemCounter = ({ value }: IProps) => {
   return (
-    <CounterContainer>
-      <CounterButtonPlus />
-      <CounterInput value={value} />
-      <CounterButtonMinus />
-    </CounterContainer>
+    <CounterListItemCounterContainer>
+      <CounterListItemCounterButtonPlus />
+      <CounterListItemCounterInput value={value} />
+      <CounterListItemCounterButtonMinus />
+    </CounterListItemCounterContainer>
   );
 };

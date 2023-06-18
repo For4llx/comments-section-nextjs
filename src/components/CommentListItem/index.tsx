@@ -3,13 +3,13 @@ import { CommentListItemContainer } from "./CommentListItemContainer";
 import { CommentListItemLayout } from "./CommentListItemLayout";
 import { useContext, useRef, useState } from "react";
 import { CommentContext } from "../Comment/CommentProvider";
-import { Counter } from "../CommentListItemCounter";
 import { CommentListItemHeader } from "../CommentListItemHeader";
-import { CommentListItemActions } from "../CommentListItemActions";
+import { CommentListItemAction } from "../CommentListItemAction";
 import { CommentListItemContent } from "../CommentListItemContent";
 import { AppAdd } from "../AppAdd";
 import { CommentListItemReplies } from "../CommentListItemReplies";
 import { CommentModal } from "../CommentListItemModal";
+import { CommentListItemCounter } from "../CommentListItemCounter";
 
 interface IProps {
   comment: IComment;
@@ -85,10 +85,10 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
     <>
       <CommentListItemContainer>
         <CommentListItemLayout
-          counter={<Counter value={comment.score} />}
+          counter={<CommentListItemCounter value={comment.score} />}
           profile={<CommentListItemHeader comment={comment} />}
           action={
-            <CommentListItemActions
+            <CommentListItemAction
               comment={comment}
               setIsEdit={setIsEdit}
               setIsDelete={setIsDelete}

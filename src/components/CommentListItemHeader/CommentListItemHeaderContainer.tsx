@@ -4,6 +4,6 @@ interface IProps {
   children: any;
 }
 
-export const CommentListItemProfileContainer = ({ children }: IProps) => {
+export const CommentListItemHeaderContainer = ({ children }: IProps) => {
   return <div className={styles.container}>{children}</div>;
 };
