@@ -26,8 +26,8 @@ export const CommentListItemCard = ({
 
   const handleEditComment = (e) => {
     e.preventDefault();
-    setContent((previous) => (previous = e.target[0].value));
-    setIsEdit((previous) => !previous);
+    setContent((content) => (content = e.target[0].value));
+    setIsEdit((isEdit) => !isEdit);
   };
 
   return (

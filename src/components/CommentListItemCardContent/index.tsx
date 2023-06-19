@@ -1,6 +1,7 @@
 import { Paragraph } from "@/components/app/paragraph";
 import { IComment } from "@/interfaces/comment";
 import { CommentAddTextarea } from "../AppAdd/CommentAddTextarea";
+import { CommentListItemContentForm } from "../CommentListItemCardContentForm";
 import { CommentListItemContentContainer } from "./CommentListItemContentContainer";
 import { CommentListItemContentReplyingTo } from "./CommentListItemContentReplyingTo";
 
@@ -22,16 +23,15 @@ export const CommentListItemCardContent = ({
   return (
     <CommentListItemContentContainer>
       {isEdit ? (
-        <form onSubmit={handleEditComment}>
-          <CommentAddTextarea defaultValue={content} />
-          <input value={"Update"} id={id.toString()} type="submit" />
-        </form>
+        <CommentListItemContentForm
+          handleEditComment={handleEditComment}
+          content={content}
+          id={id}
+        />
       ) : (
         <Paragraph>
           {comment.replyingTo && (
-            <>
-              <CommentListItemContentReplyingTo comment={comment} />{" "}
-            </>
+            <CommentListItemContentReplyingTo comment={comment} />
           )}
           {content}
         </Paragraph>

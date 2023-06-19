@@ -38,9 +38,7 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
     setComments((previousComments: IComment[]) =>
       previousComments.map((currentComment) => {
         console.log(e.target);
-        const targetId = e.target.dataset.parent_id
-          ? e.target.dataset.parent_id
-          : comment.id;
+        const targetId = e.target.dataset.target_id;
 
         if (currentComment.id == targetId) {
           currentComment.replies = [...currentComment.replies, newComment];
@@ -56,8 +54,8 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
     e.preventDefault();
     setComments((previousComments) =>
       previousComments.map((previousComment) => {
-        const targetId = e.target.dataset.parent_id;
-        console.log(targetId);
+        const targetId = e.target.dataset.target_id;
+
         if (previousComment.id == targetId) {
           const updatedCommentList = previousComment.replies.filter(
             (reply) => reply.id != comment.id
@@ -69,6 +67,7 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
       })
     );
   };
+
   return (
     <CommentListItemContainer>
       <CommentListItemCard
