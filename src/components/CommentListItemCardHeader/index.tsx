@@ -12,7 +12,7 @@ interface IProps {
   comment: IComment;
 }
 
-export const CommentListItemHeader = ({ comment }: IProps) => {
+export const CommentListItemCardHeader = ({ comment }: IProps) => {
   const { currentUser } = useContext(CommentContext);
   return (
     <CommentListItemHeaderContainer>

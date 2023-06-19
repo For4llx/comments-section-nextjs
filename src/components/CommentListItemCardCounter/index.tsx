@@ -7,7 +7,7 @@ interface IProps {
   value: number;
 }
 
-export const CommentListItemCounter = ({ value }: IProps) => {
+export const CommentListItemCardCounter = ({ value }: IProps) => {
   return (
     <CounterListItemCounterContainer>
       <CounterListItemCounterButtonPlus />

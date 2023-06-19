@@ -1,15 +1,11 @@
 import { IComment } from "@/interfaces/comment";
 import { CommentListItemContainer } from "./CommentListItemContainer";
-import { CommentListItemLayout } from "./CommentListItemLayout";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { CommentContext } from "../Comment/CommentProvider";
-import { CommentListItemHeader } from "../CommentListItemHeader";
-import { CommentListItemAction } from "../CommentListItemAction";
-import { CommentListItemContent } from "../CommentListItemContent";
 import { AppAdd } from "../AppAdd";
 import { CommentListItemReplies } from "../CommentListItemReplies";
-import { CommentModal } from "../CommentListItemModal";
-import { CommentListItemCounter } from "../CommentListItemCounter";
+import { CommentListItemModal } from "../CommentListItemModal";
+import { CommentListItemCard } from "../CommentListItemCard";
 
 interface IProps {
   comment: IComment;
@@ -21,7 +17,6 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
   const [isReply, setIsReply] = useState<boolean>(false);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isDelete, setIsDelete] = useState<boolean>(false);
-  const [content, setContent] = useState<string>(comment.content);
   const { currentUser } = useContext(CommentContext);
 
   const handleCreateReply = (e) => {
@@ -57,12 +52,6 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
     );
   };
 
-  const handleEditComment = (e) => {
-    e.preventDefault();
-    setContent((previous) => (previous = e.target[0].value));
-    setIsEdit((previous) => !previous);
-  };
-
   const handleDeleteComment = (e) => {
     e.preventDefault();
     setComments((previousComments) =>
@@ -80,30 +69,16 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
       })
     );
   };
-
   return (
     <>
       <CommentListItemContainer>
-        <CommentListItemLayout
-          counter={<CommentListItemCounter value={comment.score} />}
-          profile={<CommentListItemHeader comment={comment} />}
-          action={
-            <CommentListItemAction
-              comment={comment}
-              setIsEdit={setIsEdit}
-              setIsDelete={setIsDelete}
-              setIsReply={setIsReply}
-            />
-          }
-          content={
-            <CommentListItemContent
-              handleEditComment={handleEditComment}
-              comment={comment}
-              isEdit={isEdit}
-              id={comment.id}
-              content={content}
-            />
-          }
+        <CommentListItemCard
+          comment={comment}
+          setIsEdit={setIsEdit}
+          setIsDelete={setIsDelete}
+          setIsReply={setIsReply}
+          isEdit={isEdit}
+          setComments={setComments}
         />
         {isReply && (
           <AppAdd
@@ -122,7 +97,7 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
         )}
       </CommentListItemContainer>
       {isDelete && (
-        <CommentModal
+        <CommentListItemModal
           handleDeleteComment={handleDeleteComment}
           setIsDelete={setIsDelete}
           id={comment.id}
@@ -132,111 +107,3 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
     </>
   );
 };
-
-/*
-
-
-  const handleDeleteCommentChildren = (e) => {
-    e.preventDefault();
-    setComments((previousComments) => {
-      return previousComments.map((previousComment) => {
-        if (previousComment.id == e.target[1].id) {
-          const newList = previousComment.replies.filter(
-            (reply) => reply.id != comment.id
-          );
-          previousComment.replies = newList;
-        }
-        return previousComment;
-      });
-    });
-  };
-
-/*
-  if (isReplyy) {
-    return (
-      <>
-        <CommentListItemContainer>
-          <CommentListItemLayout
-            counter={<Counter value={comment.score} />}
-            profile={<CommentListItemProfile comment={comment} />}
-            action={
-              <CommentListItemAction
-                comment={comment}
-                setIsReply={setIsReply}
-                setIsEdit={setIsEdit}
-                setIsDelete={setIsDelete}
-              />
-            }
-            content={
-              <CommentListItemContent
-                comment={comment}
-                id={parentId}
-                isEdit={isEdit}
-              />
-            }
-          />
-          {isReply && (
-            <CommentAdd
-              id={parentId}
-              comment={comment}
-              onsubmit={undefined}  handleCreateReplyChildren 
-              name={"CreateReply"}
-            />
-          )}
-        </CommentListItemContainer>
-        <CommentModal
-          onSubmit={undefined} handleDeleteCommentChildren
-          setIsDelete={setIsDelete}
-          id={parentId}
-        />
-      </>
-    );
-  } else {
-    return (
-      <>
-        <CommentListItemContainer>
-          <CommentListItemLayout
-            counter={<Counter value={comment.score} />}
-            profile={<CommentListItemProfile comment={comment} />}
-            action={
-              <CommentListItemAction
-                comment={comment}
-                setIsEdit={setIsEdit}
-                setIsDelete={setIsDelete}
-                setIsReply={setIsReply}
-              />
-            }
-            content={
-              <CommentListItemContent
-                comment={comment}
-                id={comment.id}
-                isEdit={isEdit}
-              />
-            }
-          />
-          {isReply && (
-            <CommentAdd
-              name={"CreateReply"}
-              comment={comment}
-              onsubmit={undefined} handleCreateReplyRoot
-              id={comment.id}
-            />
-          )}
-          {comment.replies && comment.replies.length > 0 && (
-            <CommentListItemReplies
-              parentId={comment.id}
-              replies={comment.replies}
-              setComments={setComments}
-            />
-          )}
-        </CommentListItemContainer>
-        <CommentModal
-          setIsDelete={setIsDelete}
-          onSubmit={undefined} handleDeleteComment
-          id={comment.id}
-        />
-      </>
-    );
-  }
-};
-*/

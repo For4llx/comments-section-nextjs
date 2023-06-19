@@ -13,7 +13,7 @@ interface IProps {
   setIsReply: any;
 }
 
-export const CommentListItemAction = ({
+export const CommentListItemCardAction = ({
   comment,
   setIsReply,
   setIsEdit,

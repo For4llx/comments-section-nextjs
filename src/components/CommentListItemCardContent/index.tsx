@@ -12,7 +12,7 @@ interface IProps {
   content: string;
 }
 
-export const CommentListItemContent = ({
+export const CommentListItemCardContent = ({
   id,
   comment,
   isEdit,

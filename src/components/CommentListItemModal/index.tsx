@@ -12,7 +12,7 @@ interface IProps {
   parentId: any;
 }
 
-export const CommentModal = ({
+export const CommentListItemModal = ({
   id,
   setIsDelete,
   handleDeleteComment,
