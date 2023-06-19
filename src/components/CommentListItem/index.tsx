@@ -70,40 +70,38 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
     );
   };
   return (
-    <>
-      <CommentListItemContainer>
-        <CommentListItemCard
+    <CommentListItemContainer>
+      <CommentListItemCard
+        comment={comment}
+        setIsEdit={setIsEdit}
+        setIsDelete={setIsDelete}
+        setIsReply={setIsReply}
+        isEdit={isEdit}
+        setComments={setComments}
+      />
+      {isReply && (
+        <AppAdd
           comment={comment}
-          setIsEdit={setIsEdit}
-          setIsDelete={setIsDelete}
-          setIsReply={setIsReply}
-          isEdit={isEdit}
+          onsubmit={handleCreateReply}
+          id={comment.id}
+          targetId={parentId ? parentId : comment.id}
+        />
+      )}
+      {comment.replies && comment.replies.length > 0 && (
+        <CommentListItemReplies
+          parentId={comment.id}
+          replies={comment.replies}
           setComments={setComments}
         />
-        {isReply && (
-          <AppAdd
-            comment={comment}
-            onsubmit={handleCreateReply}
-            id={comment.id}
-            parentId={parentId ? "" : ""}
-          />
-        )}
-        {comment.replies && comment.replies.length > 0 && (
-          <CommentListItemReplies
-            parentId={comment.id}
-            replies={comment.replies}
-            setComments={setComments}
-          />
-        )}
-      </CommentListItemContainer>
+      )}
       {isDelete && (
         <CommentListItemModal
           handleDeleteComment={handleDeleteComment}
           setIsDelete={setIsDelete}
           id={comment.id}
-          parentId={parentId ? parentId : comment.id}
+          targetId={parentId ? parentId : comment.id}
         />
       )}
-    </>
+    </CommentListItemContainer>
   );
 };

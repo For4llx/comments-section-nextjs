@@ -3,18 +3,18 @@ import styles from "./CommentModal.module.scss";
 interface IProps {
   children: any;
   handleDeleteComment: any;
-  parentId: any;
+  targetId: any;
 }
 
 export const CommentModalContainer = ({
   children,
   handleDeleteComment,
-  parentId,
+  targetId,
 }: IProps) => {
   return (
     <dialog open className={styles.dialog}>
       <form
-        data-parent_id={parentId}
+        data-target_id={targetId}
         onSubmit={handleDeleteComment}
         className={styles.container}
       >

@@ -3,17 +3,17 @@ import styles from "./CommentAdd.module.scss";
 interface IProps {
   children: any;
   onsubmit: any;
-  parentId: number | false;
+  targetId: number;
 }
 
 export const CommentAddContainer = ({
   children,
   onsubmit,
-  parentId,
+  targetId,
 }: IProps) => {
   return (
     <form
-      data-parent_id={parentId ? parentId.toString() : false}
+      data-target_id={targetId.toString()}
       onSubmit={onsubmit}
       className={styles.container}
     >

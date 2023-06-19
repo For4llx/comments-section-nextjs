@@ -32,7 +32,7 @@ export const Comment = () => {
     <CommentContext.Provider value={{ currentUser }}>
       <CommentContainer>
         <CommentList setComments={setComments} comments={comments} />
-        <AppAdd onsubmit={handleCreateComment} id={0} parentId={0} />
+        <AppAdd onsubmit={handleCreateComment} id={0} targetId={-1} />
       </CommentContainer>
     </CommentContext.Provider>
   );

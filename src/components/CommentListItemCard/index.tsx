@@ -39,7 +39,7 @@ export const CommentListItemCard = ({
         setIsDelete={setIsDelete}
         setIsReply={setIsReply}
       />
-      <CommentListItemCardCounter value={comment.score} />
+      <CommentListItemCardCounter score={comment.score} />
       <CommentListItemCardContent
         comment={comment}
         isEdit={isEdit}

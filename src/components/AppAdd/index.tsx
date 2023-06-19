@@ -11,13 +11,13 @@ interface IProps {
   comment?: IComment;
   onsubmit: any;
   id: number;
-  parentId: number | false;
+  targetId: number;
 }
 
-export const AppAdd = ({ onsubmit, comment, id, parentId }: IProps) => {
+export const AppAdd = ({ onsubmit, comment, id, targetId }: IProps) => {
   const { currentUser } = useContext(CommentContext);
   return (
-    <CommentAddContainer parentId={parentId} onsubmit={onsubmit}>
+    <CommentAddContainer targetId={targetId} onsubmit={onsubmit}>
       <CommentAddLayout
         avatar={
           <Image
