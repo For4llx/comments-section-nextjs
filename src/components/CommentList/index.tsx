@@ -1,5 +1,4 @@
 import { IComment } from "@/interfaces/comment";
-import { IUser } from "@/interfaces/user";
 import { CommentListContainer } from "./CommentListContainer";
 import { CommentListItem } from "../CommentListItem";
 

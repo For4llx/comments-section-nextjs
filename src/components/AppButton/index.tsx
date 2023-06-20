@@ -1,4 +1,4 @@
-import { type } from "os";
+import utilsStyles from "@/styles/utils.module.scss";
 import styles from "./AppButton.module.scss";
 
 interface IProps {
@@ -9,7 +9,11 @@ interface IProps {
 
 export const AppButton = ({ children, onClick, type }: IProps) => {
   return (
-    <button type={type} onClick={onClick} className={styles.button}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={`${styles.button} ${utilsStyles.bodyMediumBold}`}
+    >
       {children}
     </button>
   );

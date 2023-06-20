@@ -1,11 +1,11 @@
 import { IComment } from "@/interfaces/comment";
 import Image from "next/image";
 import { useContext } from "react";
+import { AppTextarea } from "../AppTextArea";
 import { CommentContext } from "../Comment/CommentProvider";
 import { CommentAddContainer } from "./CommentAddContainer";
 import { CommentAddLayout } from "./CommentAddLayout";
 import { CommentAddSubmit } from "./CommentAddSubmit";
-import { CommentAddTextarea } from "./CommentAddTextarea";
 
 interface IProps {
   comment?: IComment;
@@ -28,7 +28,7 @@ export const AppAdd = ({ onsubmit, comment, id, targetId }: IProps) => {
           />
         }
         textarea={
-          <CommentAddTextarea
+          <AppTextarea
             defaultValue={comment ? `@${comment.user.username}` : ""}
           />
         }

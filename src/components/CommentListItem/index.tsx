@@ -37,7 +37,6 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
     };
     setComments((previousComments: IComment[]) =>
       previousComments.map((currentComment) => {
-        console.log(e.target);
         const targetId = e.target.dataset.target_id;
 
         if (currentComment.id == targetId) {

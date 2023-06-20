@@ -1,6 +1,5 @@
-import { Paragraph } from "@/components/app/paragraph";
 import { IComment } from "@/interfaces/comment";
-import { CommentAddTextarea } from "../AppAdd/CommentAddTextarea";
+import { AppParagraph } from "@/components/AppParagraph";
 import { CommentListItemContentForm } from "../CommentListItemCardContentForm";
 import { CommentListItemContentContainer } from "./CommentListItemContentContainer";
 import { CommentListItemContentReplyingTo } from "./CommentListItemContentReplyingTo";
@@ -8,13 +7,11 @@ import { CommentListItemContentReplyingTo } from "./CommentListItemContentReplyi
 interface IProps {
   comment: IComment;
   isEdit: boolean;
-  id: number;
   handleEditComment: any;
   content: string;
 }
 
 export const CommentListItemCardContent = ({
-  id,
   comment,
   isEdit,
   handleEditComment,
@@ -26,15 +23,14 @@ export const CommentListItemCardContent = ({
         <CommentListItemContentForm
           handleEditComment={handleEditComment}
           content={content}
-          id={id}
         />
       ) : (
-        <Paragraph>
+        <AppParagraph>
           {comment.replyingTo && (
             <CommentListItemContentReplyingTo comment={comment} />
           )}
           {content}
-        </Paragraph>
+        </AppParagraph>
       )}
     </CommentListItemContentContainer>
   );

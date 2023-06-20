@@ -1,12 +1,11 @@
 import { Heading } from "@/components/app/heading";
-import { Paragraph } from "@/components/app/paragraph";
 import Image from "next/image";
 import { CommentListItemHeaderContainer } from "./CommentListItemHeaderContainer";
 import { CommentListItemHeaderOwner } from "./CommentListItemHeaderOwner";
-import { IUser } from "@/interfaces/user";
 import { IComment } from "@/interfaces/comment";
 import { CommentContext } from "../Comment/CommentProvider";
 import { useContext } from "react";
+import { AppParagraph } from "../AppParagraph";
 
 interface IProps {
   comment: IComment;
@@ -26,7 +25,7 @@ export const CommentListItemCardHeader = ({ comment }: IProps) => {
       {comment.user.username === currentUser.username && (
         <CommentListItemHeaderOwner />
       )}
-      <Paragraph>{comment.createdAt}</Paragraph>
+      <AppParagraph>{comment.createdAt}</AppParagraph>
     </CommentListItemHeaderContainer>
   );
 };

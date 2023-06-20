@@ -1,5 +1,3 @@
-@import "../../../styles/utils.module.scss";
-
 .button {
   display: flex;
   justify-content: center;
@@ -11,7 +9,6 @@
   border-radius: 8px;
   cursor: pointer;
   text-transform: uppercase;
-  composes: bodyMediumBold;
 
   &:hover {
     background-color: var(--lightGrayishBlue);

@@ -11,7 +11,7 @@ interface IProps {
   setIsEdit: any;
   setIsDelete: any;
   setIsReply: any;
-  isEdit: any;
+  isEdit: boolean;
   setComments: any;
 }
 
@@ -27,7 +27,7 @@ export const CommentListItemCard = ({
   const handleEditComment = (e) => {
     e.preventDefault();
     setContent((content) => (content = e.target[0].value));
-    setIsEdit((isEdit) => !isEdit);
+    setIsEdit((isEdit: boolean) => !isEdit);
   };
 
   return (
@@ -43,7 +43,6 @@ export const CommentListItemCard = ({
       <CommentListItemCardContent
         comment={comment}
         isEdit={isEdit}
-        id={0}
         handleEditComment={handleEditComment}
         content={content}
       />

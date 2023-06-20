@@ -1,4 +1,4 @@
-import styles from "./CommentAdd.module.scss";
+import styles from "./AppTextArea.module.scss";
 import utilsStyles from "@/styles/utils.module.scss";
 import { Rubik } from "next/font/google";
 
@@ -8,7 +8,7 @@ interface IProps {
   defaultValue?: string;
 }
 
-export const CommentAddTextarea = ({ defaultValue }: IProps) => {
+export const AppTextarea = ({ defaultValue }: IProps) => {
   return (
     <textarea
       className={`${styles.textarea} ${utilsStyles.bodyMedium} ${rubik.className}`}
