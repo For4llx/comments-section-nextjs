@@ -49,22 +49,26 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
     );
   };
 
-  const handleDeleteComment = (e) => {
+  const handleDeleteReply = (e) => {
     e.preventDefault();
-    setComments((previousComments) =>
-      previousComments.map((previousComment) => {
-        const targetId = e.target.dataset.target_id;
+    setComments((previousComments) => {
+      const targetId = e.target.dataset.target_id;
+      const targetType = e.target.dataset.target_type;
 
-        if (previousComment.id == targetId) {
+      if (targetType === "comment") {
+        return previousComments.filter((reply) => reply.id != comment.id);
+      }
+
+      if (targetType === "reply") {
+        return previousComments.map((previousComment) => {
           const updatedCommentList = previousComment.replies.filter(
             (reply) => reply.id != comment.id
           );
           previousComment.replies = updatedCommentList;
           return previousComment;
-        }
-        return previousComment;
-      })
-    );
+        });
+      }
+    });
   };
 
   return (
@@ -83,6 +87,7 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
           onsubmit={handleCreateReply}
           id={comment.id}
           targetId={parentId ? parentId : comment.id}
+          targetType={parentId ? "reply" : "comment"}
         />
       )}
       {comment.replies && comment.replies.length > 0 && (
@@ -94,10 +99,11 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
       )}
       {isDelete && (
         <CommentListItemModal
-          handleDeleteComment={handleDeleteComment}
+          handleDeleteComment={handleDeleteReply}
           setIsDelete={setIsDelete}
           id={comment.id}
           targetId={parentId ? parentId : comment.id}
+          targetType={parentId ? "reply" : "comment"}
         />
       )}
     </CommentListItemContainer>

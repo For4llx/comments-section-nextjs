@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { CommentContext } from "./CommentProvider";
 import commentsInitialData from "@/data/comments.json";
 import { AppAdd } from "../AppAdd";
+import { CommentListItemModal } from "../CommentListItemModal";
 export const Comment = () => {
   const { currentUser } = useContext(CommentContext);
   const [comments, setComments] = useState(commentsInitialData);
@@ -27,12 +28,16 @@ export const Comment = () => {
     };
     setComments((previousComments) => [...previousComments, newComment]);
   };
-
   return (
     <CommentContext.Provider value={{ currentUser }}>
       <CommentContainer>
         <CommentList setComments={setComments} comments={comments} />
-        <AppAdd onsubmit={handleCreateComment} id={0} targetId={-1} />
+        <AppAdd
+          onsubmit={handleCreateComment}
+          id={0}
+          targetId={-1}
+          targetType={undefined}
+        />
       </CommentContainer>
     </CommentContext.Provider>
   );

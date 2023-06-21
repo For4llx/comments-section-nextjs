@@ -10,6 +10,7 @@ interface IProps {
   setIsDelete: any;
   handleDeleteComment: any;
   targetId: any;
+  targetType: any;
 }
 
 export const CommentListItemModal = ({
@@ -17,10 +18,12 @@ export const CommentListItemModal = ({
   setIsDelete,
   handleDeleteComment,
   targetId,
+  targetType,
 }: IProps) => {
   return (
     <CommentModalContainer
       targetId={targetId}
+      targetType={targetType}
       handleDeleteComment={handleDeleteComment}
     >
       <HeadingLarge>Delete comment</HeadingLarge>
