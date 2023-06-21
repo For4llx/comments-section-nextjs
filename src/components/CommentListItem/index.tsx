@@ -21,6 +21,8 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
 
   const handleCreateReply = (e) => {
     e.preventDefault();
+    const targetType = e.target.dataset.target_type;
+    const targetId = e.target.dataset.target_id;
     const newComment = {
       id: 5,
       content: e.target[0].value,
@@ -35,36 +37,45 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
         username: currentUser.username,
       },
     };
-    setComments((previousComments: IComment[]) =>
-      previousComments.map((currentComment) => {
-        const targetId = e.target.dataset.target_id;
+    setComments((previousComments: IComment[]) => {
+      if (targetType === "comment") {
+        setComments((previousComments) => [...previousComments, newComment]);
+      }
 
-        if (currentComment.id == targetId) {
-          currentComment.replies = [...currentComment.replies, newComment];
-          setIsReply((previous) => !previous);
+      if (targetType === "reply") {
+        return previousComments.map((currentComment) => {
+          if (currentComment.id == targetId) {
+            currentComment.replies = [...currentComment.replies, newComment];
+            setIsReply((previous) => !previous);
+            return currentComment;
+          }
           return currentComment;
-        }
-        return currentComment;
-      })
-    );
+        });
+      }
+    });
   };
 
   const handleDeleteReply = (e) => {
     e.preventDefault();
     setComments((previousComments) => {
-      const targetId = e.target.dataset.target_id;
       const targetType = e.target.dataset.target_type;
+      const targetId = e.target.dataset.target_id;
 
       if (targetType === "comment") {
-        return previousComments.filter((reply) => reply.id != comment.id);
+        return previousComments.filter(
+          (currentReply) => currentReply.id != comment.id
+        );
       }
 
       if (targetType === "reply") {
         return previousComments.map((previousComment) => {
-          const updatedCommentList = previousComment.replies.filter(
-            (reply) => reply.id != comment.id
-          );
-          previousComment.replies = updatedCommentList;
+          if (previousComment.id == targetId) {
+            const updatedCommentList = previousComment.replies.filter(
+              (reply) => reply.id != comment.id
+            );
+            previousComment.replies = updatedCommentList;
+            return previousComment;
+          }
           return previousComment;
         });
       }
@@ -86,8 +97,8 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
           comment={comment}
           onsubmit={handleCreateReply}
           id={comment.id}
-          targetId={parentId ? parentId : comment.id}
           targetType={parentId ? "reply" : "comment"}
+          targetId={parentId ? parentId : comment.id}
         />
       )}
       {comment.replies && comment.replies.length > 0 && (
@@ -102,8 +113,8 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
           handleDeleteComment={handleDeleteReply}
           setIsDelete={setIsDelete}
           id={comment.id}
-          targetId={parentId ? parentId : comment.id}
           targetType={parentId ? "reply" : "comment"}
+          targetId={parentId ? parentId : comment.id}
         />
       )}
     </CommentListItemContainer>

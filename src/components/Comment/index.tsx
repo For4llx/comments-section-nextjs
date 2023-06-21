@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { CommentContext } from "./CommentProvider";
 import commentsInitialData from "@/data/comments.json";
 import { AppAdd } from "../AppAdd";
-import { CommentListItemModal } from "../CommentListItemModal";
+
 export const Comment = () => {
   const { currentUser } = useContext(CommentContext);
   const [comments, setComments] = useState(commentsInitialData);
@@ -35,8 +35,8 @@ export const Comment = () => {
         <AppAdd
           onsubmit={handleCreateComment}
           id={0}
-          targetId={-1}
           targetType={undefined}
+          targetId={0}
         />
       </CommentContainer>
     </CommentContext.Provider>

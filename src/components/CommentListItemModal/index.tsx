@@ -1,4 +1,4 @@
-import { HeadingLarge } from "@/components/app/headingLarge";
+import { AppHeadingLarge } from "../AppHeadingLarge";
 import { AppParagraph } from "../AppParagraph";
 import { CommentModalActions } from "./CommentModalActions";
 import { CommentModalCancel } from "./CommentModalCancel";
@@ -26,7 +26,7 @@ export const CommentListItemModal = ({
       targetType={targetType}
       handleDeleteComment={handleDeleteComment}
     >
-      <HeadingLarge>Delete comment</HeadingLarge>
+      <AppHeadingLarge>Delete comment</AppHeadingLarge>
       <AppParagraph>
         Are you sure you want to delete this comment? This will remove the
         comment and can’t be undone.
