@@ -1,9 +1,9 @@
 import styles from "./CommentAdd.module.scss";
 
 interface IProps {
-  avatar: any;
-  textarea: any;
-  button: any;
+  avatar: JSX.Element;
+  textarea: JSX.Element;
+  button: JSX.Element;
 }
 
 export const CommentAddLayout = ({ avatar, textarea, button }: IProps) => {

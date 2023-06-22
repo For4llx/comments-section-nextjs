@@ -1,10 +1,11 @@
+import { FormEventHandler } from "react";
 import styles from "./CommentAdd.module.scss";
 
 interface IProps {
   children: any;
-  onsubmit: any;
+  onsubmit: FormEventHandler<HTMLFormElement>;
   targetId: number;
-  targetType: any;
+  targetType: string;
 }
 
 export const CommentAddContainer = ({

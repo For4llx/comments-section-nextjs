@@ -15,18 +15,17 @@ interface IProps {
 
 export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
   const [isReply, setIsReply] = useState<boolean>(false);
-  const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isDelete, setIsDelete] = useState<boolean>(false);
   const { currentUser } = useContext(CommentContext);
 
   const handleCreateReply = (e) => {
     e.preventDefault();
-    const targetType = e.target.dataset.target_type;
     const targetId = e.target.dataset.target_id;
+    const content = e.target[0].value.split(" ").slice(1).join(" ");
     const newComment = {
       id: 5,
-      content: e.target[0].value,
-      createdAt: "1 week ago",
+      content: content,
+      createdAt: "Just now",
       replyingTo: comment.user.username,
       score: 0,
       user: {
@@ -38,20 +37,14 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
       },
     };
     setComments((previousComments: IComment[]) => {
-      if (targetType === "comment") {
-        setComments((previousComments) => [...previousComments, newComment]);
-      }
-
-      if (targetType === "reply") {
-        return previousComments.map((currentComment) => {
-          if (currentComment.id == targetId) {
-            currentComment.replies = [...currentComment.replies, newComment];
-            setIsReply((previous) => !previous);
-            return currentComment;
-          }
+      return previousComments.map((currentComment) => {
+        if (currentComment.id == targetId) {
+          currentComment.replies = [...currentComment.replies, newComment];
+          setIsReply((previous) => !previous);
           return currentComment;
-        });
-      }
+        }
+        return currentComment;
+      });
     });
   };
 
@@ -86,10 +79,8 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
     <CommentListItemContainer>
       <CommentListItemCard
         comment={comment}
-        setIsEdit={setIsEdit}
         setIsDelete={setIsDelete}
         setIsReply={setIsReply}
-        isEdit={isEdit}
         setComments={setComments}
       />
       {isReply && (

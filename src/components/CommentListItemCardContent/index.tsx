@@ -28,7 +28,7 @@ export const CommentListItemCardContent = ({
         <AppParagraph>
           {comment.replyingTo && (
             <CommentListItemContentReplyingTo comment={comment} />
-          )}
+          )}{" "}
           {content}
         </AppParagraph>
       )}

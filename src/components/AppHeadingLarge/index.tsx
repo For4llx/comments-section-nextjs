@@ -2,7 +2,7 @@ import utilsStyles from "@/styles/utils.module.scss";
 import styles from "./headingLarge.module.scss";
 
 interface IProps {
-  children: any;
+  children: string;
 }
 
 export const AppHeadingLarge = ({ children }: IProps) => {

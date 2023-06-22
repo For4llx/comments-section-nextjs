@@ -4,7 +4,7 @@ interface IProps {
   id: number;
 }
 
-export const CommentAddSubmit = ({ id, parentId }: IProps) => {
+export const CommentAddSubmit = ({ id }: IProps) => {
   return (
     <input
       id={id.toString()}

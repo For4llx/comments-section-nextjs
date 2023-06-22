@@ -4,7 +4,7 @@ import { CommentListItem } from "../CommentListItem";
 
 interface IProps {
   comments?: Array<IComment>;
-  setComments: any;
+  setComments: Function;
 }
 
 export const CommentList = ({ setComments, comments }: IProps) => {

@@ -1,6 +1,6 @@
 import { IComment } from "@/interfaces/comment";
 import Image from "next/image";
-import { useContext } from "react";
+import { FormEventHandler, useContext } from "react";
 import { AppTextarea } from "../AppTextArea";
 import { CommentContext } from "../Comment/CommentProvider";
 import { CommentAddContainer } from "./CommentAddContainer";
@@ -9,10 +9,10 @@ import { CommentAddSubmit } from "./CommentAddSubmit";
 
 interface IProps {
   comment?: IComment;
-  onsubmit: any;
+  onsubmit: FormEventHandler<HTMLFormElement>;
   id: number;
   targetId: number;
-  targetType: any;
+  targetType: string;
 }
 
 export const AppAdd = ({

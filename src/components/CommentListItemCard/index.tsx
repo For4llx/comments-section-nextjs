@@ -8,26 +8,23 @@ import { CommentListItemCardContainer } from "./CommentListItemCardContainer";
 
 interface IProps {
   comment: IComment;
-  setIsEdit: any;
   setIsDelete: any;
   setIsReply: any;
-  isEdit: boolean;
   setComments: any;
 }
 
 export const CommentListItemCard = ({
   comment,
-  isEdit,
   setIsReply,
-  setIsEdit,
   setIsDelete,
 }: IProps) => {
+  const [isEdit, setIsEdit] = useState<boolean>(false);
   const [content, setContent] = useState<string>(comment.content);
 
   const handleEditComment = (e) => {
     e.preventDefault();
     setContent((content) => (content = e.target[0].value));
-    setIsEdit((isEdit: boolean) => !isEdit);
+    setIsEdit((value: boolean) => !value);
   };
 
   return (

@@ -2,7 +2,7 @@ import utilsStyles from "@/styles/utils.module.scss";
 import styles from "./AppParagraph.module.scss";
 
 interface IProps {
-  children: any;
+  children: string;
 }
 
 export const AppParagraph = ({ children }: IProps) => {
