@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  gap: 1.5rem;
+
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  justify-self: flex-end;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  cursor: pointer;
+  color: var(--moderateBlue);
+  fill: var(--moderateBlue);
+
+  &:hover {
+    color: var(--lightGrayishBlue);
+    fill: var(--lightGrayishBlue);
+  }
+}
+
+.actionDelete {
+  composes: action;
+  color: var(--softRed);
+  fill: var(--softRed);
+
+  &:hover {
+    color: var(--paleRed);
+    fill: var(--paleRed);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-column: 2;
+    grid-row: 4;
+  }
+}

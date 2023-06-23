@@ -1,0 +1,18 @@
+.container {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+
+  display: grid;
+  row-gap: 1rem;
+  column-gap: 1.5rem;
+  grid-template-columns: 40px 1fr 1fr;
+  grid-template-rows: auto auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(4, auto);
+  }
+}

@@ -1,0 +1,16 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--moderateBlue);
+  color: var(--white);
+  width: 104px;
+  height: 48px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: var(--lightGrayishBlue);
+  }
+}

@@ -17,7 +17,6 @@ export const CommentListItemRepliesList = ({
   const commentList = replies?.map((reply) => (
     <li key={reply.id}>
       <CommentListItem
-        isReply={true}
         setComments={setComments}
         comment={reply}
         parentId={parentId}

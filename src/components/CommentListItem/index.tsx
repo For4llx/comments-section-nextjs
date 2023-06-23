@@ -1,40 +1,31 @@
 import { IComment } from "@/interfaces/comment";
 import { CommentListItemContainer } from "./CommentListItemContainer";
-import { CommentListItemLayout } from "./CommentListItemLayout";
-import { Counter } from "@/components/counter";
-import { CommentListItemProfile } from "../CommentListItemProfile";
-import { CommentListItemAction } from "../CommentListItemAction";
-import { CommentAdd } from "../CommentAdd";
-import { CommentListItemContent } from "../CommentListItemContent";
-import { useContext, useRef, useState } from "react";
-import { CommentModal } from "../CommentModal";
-import { CommentListItemReplies } from "../CommentListItemReplies";
+import { useContext, useState } from "react";
 import { CommentContext } from "../Comment/CommentProvider";
+import { AppAdd } from "../AppAdd";
+import { CommentListItemReplies } from "../CommentListItemReplies";
+import { CommentListItemModal } from "../CommentListItemModal";
+import { CommentListItemCard } from "../CommentListItemCard";
 
 interface IProps {
   comment: IComment;
-  isReply: boolean;
-  parentId: number;
-  setComments: any;
+  parentId?: number;
+  setComments: Function;
 }
 
-export const CommentListItem = ({
-  setComments,
-  parentId,
-  comment,
-  isReply,
-}: IProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [isReplying, setIsReplying] = useState(false);
-  const commentModal = useRef(null);
+export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
+  const [isReply, setIsReply] = useState<boolean>(false);
+  const [isDelete, setIsDelete] = useState<boolean>(false);
   const { currentUser } = useContext(CommentContext);
 
-  const handleCreateReplyRoot = (e) => {
+  const handleCreateReply = (e) => {
     e.preventDefault();
+    const targetId = e.target.dataset.target_id;
+    const content = e.target[0].value.split(" ").slice(1).join(" ");
     const newComment = {
       id: 5,
-      content: e.target[0].value,
-      createdAt: "1 week ago",
+      content: content,
+      createdAt: "Just now",
       replyingTo: comment.user.username,
       score: 0,
       user: {
@@ -45,148 +36,78 @@ export const CommentListItem = ({
         username: currentUser.username,
       },
     };
-    setComments((previousComments) =>
-      previousComments.map((previousComment) => {
-        if (previousComment.id === comment.id) {
-          previousComment.replies = [...comment.replies, newComment];
-          return previousComment;
+    setComments((previousComments: IComment[]) => {
+      return previousComments.map((currentComment) => {
+        if (currentComment.id == targetId) {
+          currentComment.replies = [...currentComment.replies, newComment];
+          setIsReply((previous) => !previous);
+          return currentComment;
         }
-        return previousComment;
-      })
-    );
-  };
-
-  const handleCreateReplyChildren = (e) => {
-    e.preventDefault();
-    const newComment = {
-      id: 5,
-      content: e.target[0].value,
-      createdAt: "1 week ago",
-      replyingTo: comment.user.username,
-      score: 0,
-      user: {
-        image: {
-          png: currentUser.image.png,
-          webp: currentUser.image.webp,
-        },
-        username: currentUser.username,
-      },
-    };
-    setComments((previousComments) =>
-      previousComments.map((previousComment) => {
-        if (previousComment.id == e.target[1].id) {
-          previousComment.replies = [...previousComment.replies, newComment];
-          return previousComment;
-        }
-        return previousComment;
-      })
-    );
-  };
-
-  const handleDeleteComment = (e) => {
-    e.preventDefault();
-    setComments((previousComments) =>
-      previousComments.filter(
-        (previousComment) => previousComment.id != comment.id
-      )
-    );
-  };
-
-  const handleDeleteCommentChildren = (e) => {
-    e.preventDefault();
-    setComments((previousComments) => {
-      return previousComments.map((previousComment) => {
-        if (previousComment.id == e.target[1].id) {
-          const newList = previousComment.replies.filter(
-            (reply) => reply.id != comment.id
-          );
-          previousComment.replies = newList;
-        }
-        return previousComment;
+        return currentComment;
       });
     });
   };
 
-  if (isReply) {
-    return (
-      <>
-        <CommentListItemContainer>
-          <CommentListItemLayout
-            counter={<Counter value={comment.score} />}
-            profile={<CommentListItemProfile comment={comment} />}
-            action={
-              <CommentListItemAction
-                comment={comment}
-                isEditing={isEditing}
-                setIsEditing={setIsEditing}
-                isReplying={isReplying}
-                setIsReplying={setIsReplying}
-                commentModal={commentModal}
-              />
-            }
-            content={
-              <CommentListItemContent comment={comment} isEditing={isEditing} />
-            }
-          />
-          {isReplying && (
-            <CommentAdd
-              id={parentId}
-              comment={comment}
-              onsubmit={handleCreateReplyChildren}
-              name={"CreateReply"}
-            />
-          )}
-        </CommentListItemContainer>
-        <CommentModal
-          onSubmit={handleDeleteCommentChildren}
-          commentModal={commentModal}
-          id={parentId}
-        />
-      </>
-    );
-  } else {
-    return (
-      <>
-        <CommentListItemContainer>
-          <CommentListItemLayout
-            counter={<Counter value={comment.score} />}
-            profile={<CommentListItemProfile comment={comment} />}
-            action={
-              <CommentListItemAction
-                comment={comment}
-                isEditing={isEditing}
-                setIsEditing={setIsEditing}
-                isReplying={isReplying}
-                setIsReplying={setIsReplying}
-                commentModal={commentModal}
-              />
-            }
-            content={
-              <CommentListItemContent comment={comment} isEditing={isEditing} />
-            }
-          />
-          {isReplying && (
-            <CommentAdd
-              name={"CreateReply"}
-              comment={comment}
-              onsubmit={handleCreateReplyRoot}
-              id={comment.id}
-            />
-          )}
-          {comment.replies && comment.replies.length > 0 && (
-            <CommentListItemReplies
-              parentId={comment.id}
-              replies={comment.replies}
-              setComments={setComments}
-            />
-          )}
-        </CommentListItemContainer>
-        <CommentModal
-          commentModal={commentModal}
-          onSubmit={handleDeleteComment}
+  const handleDeleteReply = (e: FormEv) => {
+    e.preventDefault();
+    setComments((previousComments) => {
+      const targetType = e.target.dataset.target_type;
+      const targetId = e.target.dataset.target_id;
+
+      if (targetType === "comment") {
+        return previousComments.filter(
+          (currentReply) => currentReply.id != comment.id
+        );
+      }
+
+      if (targetType === "reply") {
+        return previousComments.map((previousComment) => {
+          if (previousComment.id == targetId) {
+            const updatedCommentList = previousComment.replies.filter(
+              (reply) => reply.id != comment.id
+            );
+            previousComment.replies = updatedCommentList;
+            return previousComment;
+          }
+          return previousComment;
+        });
+      }
+    });
+  };
+
+  return (
+    <CommentListItemContainer>
+      <CommentListItemCard
+        comment={comment}
+        setIsDelete={setIsDelete}
+        setIsReply={setIsReply}
+        setComments={setComments}
+      />
+      {isReply && (
+        <AppAdd
+          comment={comment}
+          onsubmit={handleCreateReply}
           id={comment.id}
+          targetType={parentId ? "reply" : "comment"}
+          targetId={parentId ? parentId : comment.id}
         />
-      </>
-    );
-  }
+      )}
+      {comment.replies && comment.replies.length > 0 && (
+        <CommentListItemReplies
+          parentId={comment.id}
+          replies={comment.replies}
+          setComments={setComments}
+        />
+      )}
+      {isDelete && (
+        <CommentListItemModal
+          handleDeleteComment={handleDeleteReply}
+          setIsDelete={setIsDelete}
+          id={comment.id}
+          targetType={parentId ? "reply" : "comment"}
+          targetId={parentId ? parentId : comment.id}
+        />
+      )}
+    </CommentListItemContainer>
+  );
 };
