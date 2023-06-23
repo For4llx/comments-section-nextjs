@@ -11,6 +11,7 @@ interface IProps {
 export const AppTextarea = ({ defaultValue }: IProps) => {
   return (
     <textarea
+      name="textarea"
       className={`${styles.textarea} ${utilsStyles.bodyMedium} ${rubik.className}`}
       placeholder="Add a comment..."
       defaultValue={defaultValue}

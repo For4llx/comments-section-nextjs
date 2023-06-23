@@ -10,7 +10,7 @@ import { CommentListItemCard } from "../CommentListItemCard";
 interface IProps {
   comment: IComment;
   parentId?: number;
-  setComments: any;
+  setComments: Function;
 }
 
 export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
@@ -48,7 +48,7 @@ export const CommentListItem = ({ setComments, parentId, comment }: IProps) => {
     });
   };
 
-  const handleDeleteReply = (e) => {
+  const handleDeleteReply = (e: FormEv) => {
     e.preventDefault();
     setComments((previousComments) => {
       const targetType = e.target.dataset.target_type;

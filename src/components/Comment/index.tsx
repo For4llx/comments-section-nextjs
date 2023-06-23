@@ -11,11 +11,12 @@ export const Comment = () => {
   const { currentUser } = useContext(CommentContext);
   const [comments, setComments] = useState(commentsInitialData);
 
-  const handleCreateComment = (e) => {
+  const handleCreateComment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const content: string = e.currentTarget.textarea.value;
     const newComment = {
       id: 5,
-      content: e.target[0].value,
+      content: content,
       createdAt: "1 week ago",
       score: 0,
       user: {
@@ -35,7 +36,7 @@ export const Comment = () => {
         <AppAdd
           onsubmit={handleCreateComment}
           id={0}
-          targetType={undefined}
+          targetType={""}
           targetId={0}
         />
       </CommentContainer>

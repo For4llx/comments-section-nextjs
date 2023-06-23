@@ -1,7 +1,7 @@
 import styles from "./CommentListItem.module.scss";
 
 interface IProps {
-  children: any;
+  children: React.ReactNode;
 }
 
 export const CommentListItemContainer = ({ children }: IProps) => {
